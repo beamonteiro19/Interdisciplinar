@@ -35,8 +35,8 @@ const CustomTabNavigator = () => {
             <Image
               source={iconSource}
               style={{
-                width: size,
-                height: size,
+                width: 30,
+                height: 30,
               }}
               resizeMode="contain"
             />
