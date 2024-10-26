@@ -1,4 +1,3 @@
-// src/components/CustomTabNavigator.js
 import React from 'react';
 import { Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -7,7 +6,7 @@ import Calendar from '../views/Calendar';
 import Profile from '../views/Profile';
 import Publish from '../views/Publish';
 
-// Importe os ícones personalizados
+//ícones personalizados
 import HomeIcon from '../images/icons/casa.png';
 import CalendarIcon from '../images/icons/calendario.png';
 import ProfileIcon from '../images/icons/perfil.png';
@@ -36,8 +35,8 @@ const CustomTabNavigator = () => {
             <Image
               source={iconSource}
               style={{
-                width: size,
-                height: size,
+                width: 30,
+                height: 30,
               }}
               resizeMode="contain"
             />
