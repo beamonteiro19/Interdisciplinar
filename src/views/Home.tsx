@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import ChatModal from '../views/ChatModal';
 import HeartIcon from '../images/icons/coracao.png';
 import ChatIcon from '../images/icons/comentario.png';
 import FavIcon from '../images/icons/estrela.png';
@@ -11,6 +12,7 @@ import ProfileIconPost from '../images/icons/perfil.png';
 
 const Home = () => {
   const navigation = useNavigation();
+  const [chatVisible, setChatVisible] = useState(false);
 
   return (
     <ScrollView style={styles.container}>
@@ -48,7 +50,7 @@ const Home = () => {
           <TouchableOpacity>
             <Image source={HeartIcon} style={styles.actionIcon} />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => setChatVisible(true)}>
             <Image source={ChatIcon} style={styles.actionIcon} />
           </TouchableOpacity>
           <TouchableOpacity>
@@ -56,6 +58,8 @@ const Home = () => {
           </TouchableOpacity>
         </View>
       </View>
+
+      <ChatModal visible={chatVisible} onClose={() => setChatVisible(false)} />
     </ScrollView>
   );
 };
