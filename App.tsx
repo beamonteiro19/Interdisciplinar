@@ -7,13 +7,15 @@ import SignUp from './src/views/SignUp';
 import RedefinePassword from './src/views/RedefinePassword';
 import Home from './src/views/Home';
 import TabBar from './src/views/TabBar';
+import Athletic from './src/views/Athletic';
+import DA from './src/views/DA';
 
 const Stack = createStackNavigator();
 
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator initialRouteName="TabBar">
         <Stack.Screen 
           name="Login" 
           component={Login} 
@@ -37,6 +39,16 @@ function App() {
         <Stack.Screen 
           name="TabBar" 
           component={TabBar} 
+          options={{ headerShown: false }} 
+        />
+        <Stack.Screen 
+          name="Athletic" 
+          component={Athletic} 
+          options={{ headerShown: false }} 
+        /> 
+        <Stack.Screen 
+          name="DA" 
+          component={DA} 
           options={{ headerShown: false }} 
         />
       </Stack.Navigator>

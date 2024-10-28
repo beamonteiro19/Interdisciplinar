@@ -1,33 +1,55 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet, Modal } from 'react-native';
-import ProfileIcon from '../images/icons/perfilHome.png'; 
-import InfoIcon from '../images/icons/infoIcon.png'; 
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+  Modal,
+} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import ProfileIcon from '../images/icons/perfilHome.png';
+import InfoIcon from '../images/icons/infoIcon.png';
 import AthleticIcon from '../images/icons/logoAtletica.png';
 
 const Sidebar = ({ visible, onClose }) => {
+  const navigation = useNavigation();
   return (
     <Modal
       visible={visible}
       animationType="slide"
       transparent={true}
-      onRequestClose={onClose}
-    >
+      onRequestClose={onClose}>
       <TouchableOpacity style={styles.overlay} onPress={onClose}>
         <View style={styles.sidebarContainer}>
           <View style={styles.header}>
             <Image source={ProfileIcon} style={styles.profileIcon} />
             <Text style={styles.title}>D.A FATEC JD</Text>
           </View>
-          
+
           <View style={styles.menuItems}>
-            <View style={styles.menuItem}>
+            <TouchableOpacity
+              style={styles.menuItem}
+              onPress={() => {
+                onClose(); 
+                navigation.navigate('DA');
+              }}
+            >
               <Image source={InfoIcon} style={styles.icon} />
               <Text style={styles.menuText}>Sobre o D.A</Text>
-            </View>
-            <View style={styles.menuItem}>
+            </TouchableOpacity>
+
+            {/* Opção "Atlética JD" */}
+            <TouchableOpacity
+              style={styles.menuItem}
+              onPress={() => {
+                onClose(); 
+                navigation.navigate('Athletic');
+              }}
+            >
               <Image source={AthleticIcon} style={styles.icon} />
               <Text style={styles.menuText}>Atlética JD</Text>
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
       </TouchableOpacity>
