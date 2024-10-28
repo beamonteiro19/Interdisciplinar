@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import ChatModal from '../views/ChatModal';
+import Sidebar from '../views/Sidebar';
 import HeartIcon from '../images/icons/coracao.png';
 import ChatIcon from '../images/icons/comentario.png';
 import FavIcon from '../images/icons/estrela.png';
@@ -13,6 +14,7 @@ import ProfileIconPost from '../images/icons/perfil.png';
 const Home = () => {
   const navigation = useNavigation();
   const [chatVisible, setChatVisible] = useState(false);
+  const [sidebarVisible, setSidebarVisible] = useState(false);
 
   return (
     <ScrollView style={styles.container}>
@@ -31,7 +33,7 @@ const Home = () => {
 
       {/* Menu lateral hambúrguer */}
       <View style={styles.menuContainer}>
-        <TouchableOpacity style={styles.menuButton}>
+        <TouchableOpacity style={styles.menuButton} onPress={() => setSidebarVisible(true)}>
           <Image source={MenuIcon} style={styles.actionIcon} />
         </TouchableOpacity>
       </View>
@@ -59,7 +61,9 @@ const Home = () => {
         </View>
       </View>
 
+      {/* Modais */}
       <ChatModal visible={chatVisible} onClose={() => setChatVisible(false)} />
+      <Sidebar visible={sidebarVisible} onClose={() => setSidebarVisible(false)} />
     </ScrollView>
   );
 };
