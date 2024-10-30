@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 import { useState } from 'react';
 import { Button, ThemeProvider, Switch, } from '@rneui/themed';
-import { View, Image, TouchableOpacity } from "react-native";
+import { View, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { FundoBG, ContainerComponentes, TitlePequeno, LogoLogin, ContainerTopo, TitleMedio, InputLogin } from '../styles/styled';
 import theme from '../styles/theme';
