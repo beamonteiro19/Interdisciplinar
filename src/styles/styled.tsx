@@ -74,5 +74,17 @@ font-size: 20px;
 font-family: 'Bryndan Write_fix';
 color: #999393;
 `;
+export const ContainerJogos = styled.View`
+background-color: #ffff;
+border-width: 1px;
+border-color: #5D17EB;
+border-radius: 15px;
+justify-content: center;
+align-items: flex-start;
+padding: 10px;
+height: 86px;
+width: 90%;
+`;
+
 
 
