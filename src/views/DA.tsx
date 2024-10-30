@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-const Calendar = () => {
+const DA = () => {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Text>Bem-vindo à tela de DA</Text>
@@ -10,4 +10,4 @@ const Calendar = () => {
     );
 };
 
-export default Calendar;
+export default DA;

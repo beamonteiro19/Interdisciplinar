@@ -41,12 +41,12 @@ function App() {
           component={TabBar} 
           options={{ headerShown: false }} 
         />
-        <Stack.Screen 
+         <Stack.Screen 
           name="Athletic" 
           component={Athletic} 
           options={{ headerShown: false }} 
-        /> 
-        <Stack.Screen 
+        />
+         <Stack.Screen 
           name="DA" 
           component={DA} 
           options={{ headerShown: false }} 
