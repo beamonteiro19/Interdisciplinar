@@ -5,7 +5,7 @@ import { TitlePequeno, InputFormEventos, TitleGrande, FundoPickerEventos } from 
 import {Picker} from '@react-native-picker/picker';
 import {ThemeProvider, Button, Overlay } from "@rneui/themed";
 import theme from "../styles/theme";
-
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 
 export const ConjuntoFotos = () => {
@@ -21,11 +21,27 @@ export const ConjuntoFotos = () => {
 const FormEvento = () => {
     const [visible, setVisible] = useState(false);
     const [selecioneCategoria, setSelecioneCategoria] = useState();
-    const navigation = useNavigation();
-    
-    const toggleOverlay = () => {
-      setVisible(!visible);
-    };
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(null); // Novo estado para armazenar a data selecionada
+  const navigation = useNavigation();
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleConfirm = (date) => {
+    const formattedDate = date.toLocaleDateString(); // Formata a data
+    setSelectedDate(formattedDate); // Atualiza o estado com a data formatada
+    hideDatePicker();
+  };
+
+  const toggleOverlay = () => {
+    setVisible(!visible);
+  };
     
     return(
         <ScrollView style={{flex: 1, backgroundColor: 'white', paddingBottom: 35}}>
@@ -49,31 +65,51 @@ const FormEvento = () => {
             <ConjuntoFotos />
             </View>
             </View>
-
+            
+            {/*seção do form */}
             <View style={styles.containerForm}>
                 <TitlePequeno style={{color: '#5D17EB', textAlign: 'left', alignSelf: 'flex-start'}}>Detalhes do evento:</TitlePequeno>
                <InputFormEventos placeholder="Nome do evento:"/>
+            
+            {/*picker para selecionar o tipo do evento*/}
                <FundoPickerEventos >
-            <TitlePequeno style={{color:'#999393'}}>Nicho do evento:</TitlePequeno>
-        <Picker style={{width: 190, backgroundColor: 'transparent', left: 15, color:'#999393',}}
+            <TitlePequeno style={styles.corTexto}>Nicho do evento:</TitlePequeno>
+        <Picker style={{width: 160, backgroundColor: 'transparent', left: 40, color:'#999393',}}
         dropdownIconColor={'#5D17EB'}
         dropdownIconRippleColor={'#5D17EB'}
         selectedValue={selecioneCategoria}
         onValueChange={(itemValue, itemIndex) =>
             setSelecioneCategoria(itemValue)
         }>
-        <Picker.Item label="Esporte" value="esporte" style={{fontFamily:'Bryndan Write_fix', fontSize: 20}}/>
-        <Picker.Item label="Art." value="art" style={{fontFamily:'Bryndan Write_fix', fontSize: 20}} />
-        <Picker.Item label="Comunicação" value="comunicacao" style={{fontFamily:'Bryndan Write_fix', fontSize: 20}}/>
-        <Picker.Item label="Festa" value="festa" style={{fontFamily:'Bryndan Write_fix', fontSize: 20}}/>
+        <Picker.Item label="Esporte" value="esporte" style={styles.font}/>
+        <Picker.Item label="Art." value="art" style={styles.font} />
+        <Picker.Item label="Comunicação" value="comunicacao" style={styles.font}/>
+        <Picker.Item label="Festa" value="festa" style={styles.font}/>
         </Picker>
         </FundoPickerEventos>
-               <InputFormEventos placeholder="Selecione a data:"/>
+         
+         {/*data picker para selecionar a data do evento*/}
+               <View style={styles.containerData}>
+               <TitlePequeno style={styles.corTexto}>Selecione a data:</TitlePequeno>
+               <TouchableOpacity onPress={showDatePicker} style={{ left:30, height: 25, alignItems: 'center', columnGap: 15, justifyContent: 'center', flexDirection: 'row'}}>
+               <TitlePequeno style={styles.corTexto}>{selectedDate}</TitlePequeno>
+                
+                <Image source={require('../images/icons/relogioCalendario.png')} style={{width: 15, height: 15}}/>
+                </TouchableOpacity>
+               </View>
+               <DateTimePickerModal
+                    isVisible={isDatePickerVisible}
+                    mode="date"
+                    onConfirm={handleConfirm}
+                    onCancel={hideDatePicker}
+                />
                <InputFormEventos placeholder="Horário:"/>
                <InputFormEventos placeholder="Localização:"/>
                <ThemeProvider theme={theme}>
                 <Button containerStyle={{width: '100%'}} buttonStyle={{width: '100%', borderRadius: 30}} title={'publicar'}
                 onPress={toggleOverlay}/>
+
+                 {/*modal de evento cadastrado com sucesso*/}
                 <Overlay
                 isVisible={visible} onBackdropPress={toggleOverlay} 
                 overlayStyle={{width: '80%', height: '50%', justifyContent: 'center', borderRadius: 15}}>
@@ -138,6 +174,28 @@ const styles = StyleSheet.create({
         borderColor: '#d6d6d6',
         height: 450,
         backgroundColor: 'white'
+    },
+    containerData: {
+        backgroundColor: '#ECE9E9',
+        borderWidth: 2,
+        borderColor: '#5D17EB',
+        borderRadius: 30,
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        columnGap: 15,
+        alignItems: 'center',
+        padding: 10,
+        height: 52,
+        width: '100%',
+        fontSize: 20, 
+        fontFamily: 'Bryndan Write_fix',
+        color: '#999393',
+    
+    },
+    font: {
+        fontFamily:'Bryndan Write_fix', 
+        fontSize: 20,
+        color: '#999393'
     }
 
 })
