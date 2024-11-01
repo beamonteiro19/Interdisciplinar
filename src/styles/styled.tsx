@@ -59,6 +59,18 @@ export const FundoPicker = styled.View`
   height: 52px;
   width: 100%;
 `;
+export const FundoPickerEventos = styled.View`
+  background-color: #ECE9E9;
+  border-width: 2px;
+  border-color: #5D17EB;
+  border-radius: 30px;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+  height: 52px;
+  width: 100%;
+`;
 export const InputLogin = styled.TextInput`
 background-color: #ECE9E9;
 border-width: 2px;
@@ -74,5 +86,32 @@ font-size: 20px;
 font-family: 'Bryndan Write_fix';
 color: #999393;
 `;
+export const ContainerJogos = styled.View`
+background-color: #ffff;
+border-width: 1px;
+border-color: #5D17EB;
+border-radius: 15px;
+justify-content: center;
+align-items: flex-start;
+padding: 10px;
+height: 86px;
+width: 90%;
+`;
+export const InputFormEventos = styled.TextInput`
+background-color: #ECE9E9;
+border-width: 2px;
+border-color: #5D17EB;
+border-radius: 30px;
+flex-direction: row;
+justify-content: flex-start;
+align-items: flex-end;
+padding: 10px;
+height: 52px;
+width: 100%;
+font-size: 20px; 
+font-family: 'Bryndan Write_fix';
+color: #999393;
+`;
+
 
 
