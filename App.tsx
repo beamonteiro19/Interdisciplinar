@@ -9,6 +9,11 @@ import Home from './src/views/Home';
 import TabBar from './src/views/TabBar';
 import Athletic from './src/views/Athletic';
 import DA from './src/views/DA';
+import Team from './src/views/Team';
+import Sports from './src/views/Sports';
+import ContactUs from './src/views/ContactUs';
+import Details from './src/views/Details';
+import Gallery from './src/views/Gallery';
 
 const Stack = createStackNavigator();
 
@@ -49,6 +54,31 @@ function App() {
          <Stack.Screen 
           name="DA" 
           component={DA} 
+          options={{ headerShown: false }} 
+        />
+        <Stack.Screen 
+          name="Team" 
+          component={Team} 
+          options={{ headerShown: false }} 
+        />
+        <Stack.Screen 
+          name="Sports" 
+          component={Sports} 
+          options={{ headerShown: false }} 
+        />
+        <Stack.Screen 
+          name="ContactUs" 
+          component={ContactUs} 
+          options={{ headerShown: false }} 
+        />
+        <Stack.Screen 
+          name="Details" 
+          component={Details} 
+          options={{ headerShown: false }} 
+        />
+        <Stack.Screen 
+          name="Gallery" 
+          component={Gallery} 
           options={{ headerShown: false }} 
         />
       </Stack.Navigator>

@@ -1,12 +1,177 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, TouchableOpacity, Image, StyleSheet, Text } from 'react-native';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
+import Team from '../views/Team';
+import Sports from '../views/Sports';
+import ContactUs from '../views/ContactUs';
+import Gallery from '../views/Gallery'; 
+import { useNavigation } from '@react-navigation/native';
+
+const Tab = createMaterialTopTabNavigator();
+const Stack = createStackNavigator();
+
+const AthleticTabs = () => {
+  const navigation = useNavigation();
+
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        lazy: true,
+        tabBarLabelStyle: styles.tabBarLabel,
+        tabBarStyle: styles.tabBar,
+        tabBarIndicatorStyle: styles.tabBarIndicator,
+      }}
+    >
+      <Tab.Screen
+        name="Equipe"
+        component={Team}
+        options={{
+          tabBarLabel: ({ focused }) => (
+            <View style={[styles.tabContainer, focused && styles.tabContainerFocused]}>
+              <Text style={[styles.tabText, focused && styles.tabTextFocused]}>Equipe</Text>
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Esportes"
+        component={Sports}
+        options={{
+          tabBarLabel: ({ focused }) => (
+            <View style={[styles.tabContainer, focused && styles.tabContainerFocused]}>
+              <Text style={[styles.tabText, focused && styles.tabTextFocused]}>Esportes</Text>
+            </View>
+          ),
+        }}
+      />
+     
+      <Tab.Screen
+        name="Fale Conosco"
+        component={() => null}
+        options={{
+          tabBarLabel: ({ focused }) => (
+            <TouchableOpacity
+              style={[styles.tabContainer, focused && styles.tabContainerFocused]}
+              onPress={() => navigation.navigate('Fale Conosco')}
+            >
+              <Text style={[styles.tabText, focused && styles.tabTextFocused]}>Fale Conosco</Text>
+            </TouchableOpacity>
+          ),
+        }}
+        listeners={{
+          tabPress: (e) => {
+            e.preventDefault();
+            navigation.navigate('Fale Conosco');
+          },
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
 
 const Athletic = () => {
+  const navigation = useNavigation();
+
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Bem-vindo à tela da Atlética</Text>
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <TouchableOpacity style={styles.iconButton} onPress={() => navigation.goBack()}>
+          <Image source={require('../images/voltar.png')} style={styles.arrowIcon} />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.iconButton} onPress={() => navigation.navigate('Gallery')}>
+          <Image source={require('../images/galeria.png')} style={styles.galleryIcon} />
+        </TouchableOpacity>
+      </View>
+
+      <Image source={require('../images/AtleticaImg.png')} style={styles.logo} />
+
+      <AthleticTabs />
     </View>
   );
 };
 
-export default Athletic;
+const AthleticStack = () => {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Athletic" component={Athletic} />
+      <Stack.Screen name="Fale Conosco" component={ContactUs} />
+    </Stack.Navigator>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    backgroundColor: 'white',
+  },
+  iconButton: {
+    width: 40,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  arrowIcon: {
+    width: 30,
+    height: 30,
+  },
+  galleryIcon: {
+    width: 30,
+    height: 30,
+  },
+  logo: {
+    width: 150,
+    height: 150,
+    alignSelf: 'center',
+    marginBottom: 20,
+    resizeMode: 'contain',
+  },
+  tabBar: {
+    backgroundColor: 'white',
+    elevation: 0,
+    shadowOpacity: 0,
+    borderBottomWidth: 1,
+    borderBottomColor: '#F8E40B', 
+  },
+  tabBarLabel: {
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  tabBarIndicator: {
+    backgroundColor: '#D52527',
+    height: 3,
+  },
+  tabContainer: {
+    width: 100,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20,
+    borderColor: '#F8E40B',
+    borderWidth: 1,
+    backgroundColor: 'white',
+  },
+  tabContainerFocused: {
+    backgroundColor: '#F8E40B',
+  },
+  tabText: {
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 14,
+  },
+  tabTextFocused: {
+    color: '#D52527',
+  },
+
+  
+});
+
+export default AthleticStack;
