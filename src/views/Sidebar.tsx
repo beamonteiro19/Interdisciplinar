@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -6,22 +6,41 @@ import {
   TouchableOpacity,
   StyleSheet,
   Modal,
+  Animated,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import ProfileIcon from '../images/icons/perfilHome.png';
 import InfoIcon from '../images/icons/infoIcon.png';
 import AthleticIcon from '../images/icons/logoAtletica.png';
 
-const Sidebar = memo({ visible, onClose }) => {
+const Sidebar = memo(({ visible, onClose }) => {
   const navigation = useNavigation();
+  const [translateX] = useState(new Animated.Value(-300));
+
+  useEffect(() => {
+    if (visible) {
+      Animated.timing(translateX, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: true,
+      }).start();
+    } else {
+      Animated.timing(translateX, {
+        toValue: -300,
+        duration: 300,
+        useNativeDriver: true,
+      }).start();
+    }
+  }, [visible]);
+
   return (
     <Modal
       visible={visible}
-      animationType="slide"
+      animationType="none"
       transparent={true}
       onRequestClose={onClose}>
       <TouchableOpacity style={styles.overlay} onPress={onClose}>
-        <View style={styles.sidebarContainer}>
+        <Animated.View style={[styles.sidebarContainer, { transform: [{ translateX }] }]}>
           <View style={styles.header}>
             <Image source={ProfileIcon} style={styles.profileIcon} />
             <Text style={styles.title}>D.A FATEC JD</Text>
@@ -39,7 +58,6 @@ const Sidebar = memo({ visible, onClose }) => {
               <Text style={styles.menuText}>Sobre o D.A</Text>
             </TouchableOpacity>
 
-            {/* Opção "Atlética JD" */}
             <TouchableOpacity
               style={styles.menuItem}
               onPress={() => {
@@ -51,11 +69,13 @@ const Sidebar = memo({ visible, onClose }) => {
               <Text style={styles.menuText}>Atlética JD</Text>
             </TouchableOpacity>
           </View>
-        </View>
+        </Animated.View>
       </TouchableOpacity>
     </Modal>
   );
-};
+}, (prevProps, nextProps) => {
+  return prevProps.visible === nextProps.visible;
+});
 
 const styles = StyleSheet.create({
   overlay: {
@@ -68,6 +88,8 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: '#FFF',
     padding: 20,
+    position: 'absolute',
+    left: 0,
   },
   header: {
     flexDirection: 'row',
