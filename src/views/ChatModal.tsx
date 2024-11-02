@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { View, Text, Image, ScrollView, TextInput, Modal, StyleSheet, TouchableOpacity } from 'react-native';
 import ProfileIconPost from '../images/icons/perfilHome.png';
 import ChatIcon from '../images/icons/comentario.png';
 
-const ChatModal = ({ visible, onClose }) => {
+const ChatModal =  memo({ visible, onClose }) => {
   return (
     <Modal
       visible={visible}
@@ -17,10 +17,6 @@ const ChatModal = ({ visible, onClose }) => {
           <ScrollView style={styles.chatMessages}>
             {[...Array(5)].map((_, i) => (
               <View key={i} style={styles.chatMessage}>
-
-
-
-
                 <Image source={ProfileIconPost} style={styles.chatUserIcon} />
                 <Text style={styles.chatMessageText}>
                   Username{` `} <Text style={{ fontWeight: '400' }}>Comentário exemplo para testes e visualização.</Text>
