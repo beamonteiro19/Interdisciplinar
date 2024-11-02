@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import {
   View,
   Text,
@@ -12,7 +12,7 @@ import ProfileIcon from '../images/icons/perfilHome.png';
 import InfoIcon from '../images/icons/infoIcon.png';
 import AthleticIcon from '../images/icons/logoAtletica.png';
 
-const Sidebar = ({ visible, onClose }) => {
+const Sidebar = memo({ visible, onClose }) => {
   const navigation = useNavigation();
   return (
     <Modal
