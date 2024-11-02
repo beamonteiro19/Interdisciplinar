@@ -3,7 +3,7 @@ import { View, Text, Image, ScrollView, TextInput, Modal, StyleSheet, TouchableO
 import ProfileIconPost from '../images/icons/perfilHome.png';
 import ChatIcon from '../images/icons/comentario.png';
 
-const ChatModal =  memo({ visible, onClose }) => {
+const ChatModal = memo(function ChatModal({ visible, onClose }) {
   return (
     <Modal
       visible={visible}
@@ -19,7 +19,7 @@ const ChatModal =  memo({ visible, onClose }) => {
               <View key={i} style={styles.chatMessage}>
                 <Image source={ProfileIconPost} style={styles.chatUserIcon} />
                 <Text style={styles.chatMessageText}>
-                  Username{` `} <Text style={{ fontWeight: '400' }}>Comentário exemplo para testes e visualização.</Text>
+                  Username <Text style={{ fontWeight: '400' }}>Comentário exemplo para testes e visualização.</Text>
                 </Text>
               </View>
             ))}
@@ -32,7 +32,7 @@ const ChatModal =  memo({ visible, onClose }) => {
       </TouchableOpacity>
     </Modal>
   );
-};
+});
 
 const styles = StyleSheet.create({
   chatOverlay: {
