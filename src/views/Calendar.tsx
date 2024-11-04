@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView} from 'react-native';
 import {ContainerJogos} from '../styles/styled';
+import { useNavigation } from '@react-navigation/native';
 
 
 interface props {
@@ -40,15 +41,20 @@ export const CardEventos = ({titulo, inscritos, endereco, dataEvento}:props)=>{
     )
 }
 export const ItensMenu = () =>{
+  const navigation = useNavigation();
+
+  const navigateToEvents = (type: string) => {
+      navigation.navigate('Eventos', { eventType: type });
+  };
     return(
         <View style={{backgroundColor: '#5D17EB', borderRadius: 10, alignItems: 'center', justifyContent: 'space-evenly', width: 174, height: 170}}>
-            <TouchableOpacity style={{ width: '100%',alignItems: 'center', borderBottomColor: 'white', borderBottomWidth:2, height:54, justifyContent: 'center'}}>
+            <TouchableOpacity onPress={() => navigateToEvents("Eventos")} style={{ width: '100%',alignItems: 'center', borderBottomColor: 'white', borderBottomWidth:2, height:54, justifyContent: 'center'}}>
                 <Text style={{fontSize: 22, textAlign: 'center', color: 'white'}}>Eventos</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{ width: '100%', alignItems: 'center', borderBottomColor: 'white', borderBottomWidth:2,height:54, justifyContent: 'center'}}>
+            <TouchableOpacity onPress={() => navigateToEvents("Meus eventos")} style={{ width: '100%', alignItems: 'center', borderBottomColor: 'white', borderBottomWidth:2,height:54, justifyContent: 'center'}}>
                 <Text style={{fontSize: 22, textAlign: 'center',color: 'white'}}>Meus Eventos</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{ width: '100%', alignItems: 'center', height:60, justifyContent: 'center'}}>
+            <TouchableOpacity onPress={() => navigateToEvents("Eventos que participei")} style={{ width: '100%', alignItems: 'center', height:60, justifyContent: 'center'}}>
                 <Text style={{fontSize: 22, textAlign: 'center', color: 'white'}}>Eventos que participei</Text>
             </TouchableOpacity>
         </View>
@@ -57,6 +63,7 @@ export const ItensMenu = () =>{
 
 const Calendar = () => {
     const [menu, setMenu] = useState(false);
+    const navigation = useNavigation();
 
     function mostrarMenu() {
     setMenu(!menu); 
@@ -118,7 +125,7 @@ const Calendar = () => {
                 <Text style={{fontSize: 16, color: '#5D17EB'}}>SEG</Text>
                 <Text style={{fontSize: 16, color: '#5D17EB'}}>9</Text>
                 </View>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate("FormEvento")}>
                 <View style={styles.add}>
                     <Image source={require('../images/icons/mais.png')}/>
                 <Text style={{fontSize: 18, color: '#5D17EB'}}>ADD</Text>
