@@ -34,7 +34,7 @@ const Login = () => {
                         <TitlePequeno style={{ fontSize: 15, color: '#999393', marginBottom: 30 }}>Esqueci minha senha</TitlePequeno>
                     </TouchableOpacity>
                     <View>
-                        <Button title='ENTRAR' />
+                        <Button title='ENTRAR' onPress={() => navigation.navigate('TabBar')}/>
                         <View style={{ zIndex: 1, marginRight: 200, marginTop: -50 }}>
                             <Image source={require('../images/nuvem.png')} />
                         </View>
