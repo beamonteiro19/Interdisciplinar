@@ -2,9 +2,11 @@ import { FundoBG,InputLogin, ContainerComponentes, ContainerTopo, TitleGrande, L
 import { View, Image, } from "react-native";
 import { Button, ThemeProvider} from '@rneui/themed';
 import theme from '../styles/theme';
+import { useNavigation } from '@react-navigation/native';
 
 
 const RedefinePassword = () => {
+    const navigation = useNavigation();
     return(
         <FundoBG>
             <ContainerComponentes>
@@ -13,7 +15,7 @@ const RedefinePassword = () => {
                 <LogoLogin source={require('../images/logoLogin.png')}/>
                 <TitleMedio style={{color: '#5D17EB'}}>REDEFINIR SENHA</TitleMedio>
                 <InputLogin placeholder='Confirme seu e-mail:' placeholderTextColor={'#999393'}/>
-                <Button title={'Enviar link de acesso'} buttonStyle={{width: 245}}/>
+                <Button title={'Enviar link de acesso'} buttonStyle={{width: 245}} onPress={() => navigation.navigate('MudarSenha')}/>
                 </View>
                 </ThemeProvider>
             </ContainerComponentes>
@@ -21,6 +23,7 @@ const RedefinePassword = () => {
     )
 }
 export const MudarSenha = () => {
+    const navigation = useNavigation();
     return(
         <FundoBG>
             <ContainerTopo>
@@ -33,7 +36,7 @@ export const MudarSenha = () => {
                     <View style={{height: 300, width:'100%', justifyContent: 'space-evenly'}}>
                 <InputLogin placeholder='Digite a nova senha:' placeholderTextColor={'#999393'}/>
                 <InputLogin placeholder='Confirme a nova senha:' placeholderTextColor={'#999393'}/>
-                <Button title={'REDEFINIR SENHA'} buttonStyle={{width: 245}}/>
+                <Button title={'REDEFINIR SENHA'} buttonStyle={{width: 245}} onPress={() => navigation.navigate('SenhaAlterada')}/>
                 </View>
                 </ThemeProvider>
                 </View>
@@ -42,6 +45,7 @@ export const MudarSenha = () => {
     )
 }
 export const SenhaAlterada = () => {
+    const navigation = useNavigation();
     return(
         <FundoBG>
         <ContainerTopo>
@@ -55,7 +59,8 @@ export const SenhaAlterada = () => {
             </View>
             <TitleGrande style={{color: '#5D17EB', textAlign: 'center', marginTop: 150}}>Senha redefinida com sucesso!</TitleGrande>
             <ThemeProvider theme={theme}>
-                <Button title={'OK'} buttonStyle={{height: 38, borderRadius: 20, width: 200, marginTop: 50}} titleStyle={{fontSize: 25}}/>
+                <Button title={'OK'} buttonStyle={{height: 38, borderRadius: 20, width: 200, marginTop: 50, padding: 3}} titleStyle={{fontSize: 25}} 
+                 onPress={() => navigation.navigate('Login')}/>
             </ThemeProvider>
             </View>
         </ContainerComponentes>
