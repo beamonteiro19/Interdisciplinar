@@ -5,9 +5,11 @@ import { ThemeProvider, Button} from '@rneui/themed';
 import {Picker} from '@react-native-picker/picker';
 import theme from '../styles/theme';
 import { View, Image, ScrollView} from "react-native";
+import { useNavigation } from '@react-navigation/native';
 
 const SignUp = () => {
     const [selecioneCategoria, setSelecioneCategoria] = useState();
+    const navigation = useNavigation();
    
 return(
     <FundoBG>
@@ -39,7 +41,7 @@ return(
 
         </View>
         <View style={{height: '20%', padding: 20}}>
-        <Button title='CRIAR CONTA' />
+        <Button title='CRIAR CONTA' titleStyle={{fontSize: 18}} onPress={() => navigation.navigate('ContaCriada')}/>
         <View style={{zIndex: 1, right: -10, top: -50}}> 
             <Image source={require('../images/nuvem.png')}/> 
         </View>
@@ -52,6 +54,8 @@ return(
 )
 }
 export const ContaCriada = () => {
+    const navigation = useNavigation();
+   
     return(
             <FundoBG>
                <ContainerTopo>
@@ -65,7 +69,8 @@ export const ContaCriada = () => {
                    </View>
                    <TitleGrande style={{color: '#5D17EB', textAlign: 'center', marginTop: 150}}>Conta criada com sucesso!!!</TitleGrande>
                    <ThemeProvider theme={theme}>
-                       <Button title={'OK'} buttonStyle={{height: 38, borderRadius: 20, width: 200, marginTop: 50}} titleStyle={{fontSize: 25}}/>
+                       <Button title={'OK'} buttonStyle={{height: 38, borderRadius: 20, width: 200, marginTop: 50, padding: 3}} titleStyle={{fontSize: 25}} 
+                       onPress={() => navigation.navigate('TabBar')}/>
                    </ThemeProvider>
                    </View>
                </ContainerComponentes>
