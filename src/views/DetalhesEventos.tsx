@@ -3,18 +3,29 @@ import { Button } from "@rneui/themed";
 import { View, Image, Text, StyleSheet, TouchableOpacity, ScrollView} from 'react-native'
 import { Overlay } from '@rneui/themed'
 import { TitleGrande,  } from "../styles/styled";
+import { useRoute } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
+import { CardEventos } from "./Eventos";
 
 const DetalhesEventos = () => {
     const [visible, setVisible] = useState(false);
+    const [desistirVisible, setDesistirVisible] = useState(false);
+    const route = useRoute();
+    const navigation = useNavigation();
+    const { eventType } = route.params || { eventType: 'todos' };
 
     const toggleOverlay = () => {
+        setVisible(!visible);
+      };
+
+      const modalDesistir = () => {
         setVisible(!visible);
       };
     return(
         <View style={styles.container}>
             <View style={{height: '93%'}}>
                 <View>
-                    <TouchableOpacity style={{position: 'absolute', zIndex: 2, top: 10, left: 10}}>
+                    <TouchableOpacity style={{position: 'absolute', zIndex: 2, top: 10, left: 10}} onPress={() => navigation.goBack()}>
                     <Image source={require('../images/icons/setaEsquerda.png')} />
                     </TouchableOpacity>
             
@@ -92,27 +103,61 @@ const DetalhesEventos = () => {
                 <Image source={require('../images/icons/interrogacao.png')}/>
                 </View>
                 </TouchableOpacity>
-           <Button  buttonStyle={styles.buttonPresenca} title={'Confirmar Presença'} titleStyle={styles.textPresenca} 
-           containerStyle={{backgroundColor: 'red', borderRadius: 20}} onPress={toggleOverlay}/>
-
+                {eventType === "Eventos que participei" && (
+               <Button  buttonStyle={styles.buttonPresenca} title={'Galeria'} titleStyle={styles.textPresenca} 
+               containerStyle={{backgroundColor: 'red', borderRadius: 20}} onPress={toggleOverlay}/>
+            )}
+            {eventType === "Eventos" && (
+               <Button  buttonStyle={styles.buttonPresenca} title={'Confirmar presença'} titleStyle={styles.textPresenca} 
+               containerStyle={{backgroundColor: 'red', borderRadius: 20}} onPress={toggleOverlay}/>
+            )}
+            {eventType === "Meus eventos" && (
+               <Button  buttonStyle={styles.buttonPresenca} title={'Desistir'} titleStyle={styles.textPresenca} 
+               containerStyle={{borderRadius: 20}} onPress={modalDesistir}/>
+            )}
+           
               </View>
               </View>
               
               {/*modal de evento cadastrado com sucesso*/}
-              <Overlay
-                isVisible={visible} onBackdropPress={toggleOverlay} 
-                overlayStyle={{width: '80%', height: '50%', justifyContent: 'center', borderRadius: 15}}>
-                    <View style={{width: '100%', height: '100%', justifyContent: 'space-between', alignItems: 'center', padding: 15}}>
-                    <View style={{justifyContent: 'center', alignItems: 'center', top: 100}}>
-        <Image source={require('../images/fundoCirculo.png')} style={{position: 'absolute'}}/>
-            <Image source={require('../images/circuloVerificado.png')} style={{position: 'absolute'}}/>
-            </View>
-            <TitleGrande style={{color: '#5D17EB', textAlign: 'center', top: 90, fontSize: 29}}>Presença confirmada com sucesso</TitleGrande>
-                    <Button title={'OK'} 
-                    onPress={toggleOverlay}
-                    buttonStyle={{height: 38, borderRadius: 20, width: 200, backgroundColor: '#5D17EB'}} titleStyle={{fontSize: 23, height: 30}}/>
+              {eventType === "Eventos" && (
+               <Overlay
+               isVisible={visible} onBackdropPress={toggleOverlay} 
+               overlayStyle={{width: '80%', height: '50%', justifyContent: 'center', borderRadius: 15}}>
+                   <View style={{width: '100%', height: '100%', justifyContent: 'space-between', alignItems: 'center', padding: 15}}>
+                   <View style={{justifyContent: 'center', alignItems: 'center', top: 100}}>
+       <Image source={require('../images/fundoCirculo.png')} style={{position: 'absolute'}}/>
+           <Image source={require('../images/circuloVerificado.png')} style={{position: 'absolute'}}/>
+           </View>
+           <TitleGrande style={{color: '#5D17EB', textAlign: 'center', top: 90, fontSize: 29}}>Presença confirmada com sucesso</TitleGrande>
+                   <Button title={'OK'} 
+                   onPress={toggleOverlay}
+                   buttonStyle={{height: 38, borderRadius: 20, width: 200, backgroundColor: '#5D17EB'}} titleStyle={{fontSize: 23, height: 30}}/>
+                   </View>
+               </Overlay>
+            )}
+            {/*modal de desistencia do evento*/}
+            {eventType === "Meus eventos" && (
+                <Overlay
+                isVisible={visible} onBackdropPress={modalDesistir} 
+                overlayStyle={{width: '100%', height: '70%', justifyContent: 'flex-start', borderTopRightRadius: 50, borderTopLeftRadius: 50, top: '15%' }} >
+                    <View style={{width: '100%', height: '90%', justifyContent: 'flex-start', alignItems: 'center', padding: 15, rowGap: 30, top: 10}}>
+                    <CardEventos  iconCard={require('../images/icons/setaDireita.png')} titulo='INTERFACE: JOGO DE FUTSAL' inscritos='30' endereco='R. XXXXXXXX, n 24' dataEvento='17 jul' imagem={require('../images/imagemEvento.png')} tipoEvento="Esporte"/>
+            <TitleGrande style={{color: 'black', textAlign: 'center', fontSize: 24}}>Desistir do Evento?</TitleGrande>
+            <View style={{flexDirection: 'row', columnGap: 35}}>
+                    <Button title={'Cancelar'} 
+                    onPress={modalDesistir}
+                    buttonStyle={{height: 48, borderRadius: 30, width: 150, backgroundColor: 'white', borderColor: '#5D17EB', borderWidth: 1}} titleStyle={{fontSize: 20, height: 30, color: '#5D17EB'}}/>
+                    
+                    <Button title={'Desistir'} 
+                    onPress={modalDesistir}
+                    buttonStyle={{height: 48, borderRadius: 30, width: 150, backgroundColor: '#5D17EB'}} titleStyle={{fontSize: 20, height: 30}}/>
+                    </View>
                     </View>
                 </Overlay>
+            )}
+
+              
         </View>
     )
 
@@ -217,8 +262,9 @@ const styles = StyleSheet.create({
     borderColor: '#5D17EB',
     borderWidth: 1,
     padding: 3,
-    width: 205,
-    paddingHorizontal: 5
+    width: 201,
+    paddingHorizontal: 5,
+    height: 45
    },
    textPresenca:{
     color: '#5D17EB',
