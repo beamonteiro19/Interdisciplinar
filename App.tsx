@@ -14,13 +14,20 @@ import Sports from './src/views/Sports';
 import ContactUs from './src/views/ContactUs';
 import Details from './src/views/Details';
 import Gallery from './src/views/Gallery';
+import Notifications from './src/views/Notifications';
+import Eventos from './src/views/Eventos';
+import DetalhesEventos from './src/views/DetalhesEventos';
+import FormEvento from './src/views/FormEvento';
+import { ContaCriada } from './src/views/SignUp';
+import { SenhaAlterada } from './src/views/RedefinePassword';
+import { MudarSenha } from './src/views/RedefinePassword';
 
 const Stack = createStackNavigator();
 
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="TabBar">
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen 
           name="Login" 
           component={Login} 
@@ -79,6 +86,41 @@ function App() {
         <Stack.Screen 
           name="Gallery" 
           component={Gallery} 
+          options={{ headerShown: false }} 
+        />
+        <Stack.Screen 
+          name="Notifications" 
+          component={Notifications} 
+          options={{ headerShown: false }} 
+        />
+        <Stack.Screen 
+          name="Eventos" 
+          component={Eventos} 
+          options={{ headerShown: false }} 
+        />
+        <Stack.Screen 
+          name="DetalhesEventos" 
+          component={DetalhesEventos} 
+          options={{ headerShown: false }} 
+        />
+        <Stack.Screen 
+          name="FormEvento" 
+          component={FormEvento} 
+          options={{ headerShown: false }} 
+        />
+        <Stack.Screen 
+          name="ContaCriada" 
+          component={ContaCriada} 
+          options={{ headerShown: false }} 
+        />
+        <Stack.Screen 
+          name="SenhaAlterada" 
+          component={SenhaAlterada} 
+          options={{ headerShown: false }} 
+        />
+        <Stack.Screen 
+          name="MudarSenha" 
+          component={MudarSenha} 
           options={{ headerShown: false }} 
         />
       </Stack.Navigator>
