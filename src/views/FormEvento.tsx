@@ -19,8 +19,8 @@ export const ConjuntoFotos = () => {
     )
 }
 const FormEvento = () => {
-    const [visible, setVisible] = useState(false);
-    const [selecioneCategoria, setSelecioneCategoria] = useState();
+  const [visible, setVisible] = useState(false);
+  const [selecioneCategoria, setSelecioneCategoria] = useState();
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null); // Novo estado para armazenar a data selecionada
   const navigation = useNavigation();
@@ -91,18 +91,18 @@ const FormEvento = () => {
          {/*data picker para selecionar a data do evento*/}
                <View style={styles.containerData}>
                <TitlePequeno style={styles.corTexto}>Selecione a data:</TitlePequeno>
-               <TouchableOpacity onPress={showDatePicker} style={{ left:30, height: 25, alignItems: 'center', columnGap: 15, justifyContent: 'center', flexDirection: 'row'}}>
+               <View style={{width: 165,flexDirection: 'row', columnGap: 20, alignItems: 'center', justifyContent: 'flex-end'}}>
                <TitlePequeno style={styles.corTexto}>{selectedDate}</TitlePequeno>
-                
+               <TouchableOpacity onPress={showDatePicker} style={{ height: 25, alignItems: 'center', columnGap: 15, justifyContent: 'center', flexDirection: 'row'}}>
                 <Image source={require('../images/icons/relogioCalendario.png')} style={{width: 15, height: 15}}/>
                 </TouchableOpacity>
+                </View>
                </View>
                <DateTimePickerModal
                     isVisible={isDatePickerVisible}
                     mode="date"
                     onConfirm={handleConfirm}
-                    onCancel={hideDatePicker}
-                />
+                    onCancel={hideDatePicker}/>
                <InputFormEventos placeholder="Horário:"/>
                <InputFormEventos placeholder="Localização:"/>
                <ThemeProvider theme={theme}>
