@@ -18,7 +18,6 @@ const Home = () => {
 
   return (
     <ScrollView style={styles.container}>
-      {/* Cabeçalho com ícone de perfil e notificação */}
       <View style={styles.header}>
         <TouchableOpacity style={styles.profileContainer}>
           <View style={styles.profileIconContainer}>
@@ -31,14 +30,12 @@ const Home = () => {
         </TouchableOpacity>
       </View>
 
-      {/* Menu lateral hambúrguer */}
       <View style={styles.menuContainer}>
         <TouchableOpacity style={styles.menuButton} onPress={() => setSidebarVisible(true)}>
           <Image source={MenuIcon} style={styles.actionIcon} />
         </TouchableOpacity>
       </View>
 
-      {/* Post de exemplo */}
       <View style={styles.postContainer}>
         <View style={styles.postHeader}>
           <View style={styles.postProfileIconContainer}>

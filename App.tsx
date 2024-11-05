@@ -6,6 +6,7 @@ import Login from './src/views/Login';
 import SignUp from './src/views/SignUp';
 import RedefinePassword from './src/views/RedefinePassword';
 import Home from './src/views/Home';
+import Notifications from './src/views/Notifications';
 import TabBar from './src/views/TabBar';
 import Athletic from './src/views/Athletic';
 import DA from './src/views/DA';
@@ -46,6 +47,11 @@ function App() {
         <Stack.Screen 
           name="Home" 
           component={Home} 
+          options={{ headerShown: false }} 
+        />
+        <Stack.Screen 
+          name="Notifications" 
+          component={Notifications} 
           options={{ headerShown: false }} 
         />
         <Stack.Screen 
