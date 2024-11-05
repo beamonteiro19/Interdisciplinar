@@ -1,10 +1,14 @@
 import React, { memo } from 'react';
-import { View, Text, Image, ScrollView, StyleSheet } from 'react-native';
-import BellIcon from '../images/icons/sino.png'; // Ícone de notificação (exemplo)
-import ClockIcon from '../images/icons/alarme.png'; // Ícone de evento próximo
-import CancelIcon from '../images/icons/cancelar.png'; // Ícone de cancelamento
+import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import BellIcon from '../images/icons/notificacao.png';
+import ClockIcon from '../images/icons/alarme.png';
+import CancelIcon from '../images/icons/cancelar.png';
+import BackIcon from '../images/icons/setaEsquerda.png'; 
 
 const Notifications = memo(() => {
+  const navigation = useNavigation();
+
   const notifications = [
     { id: 1, icon: ClockIcon, text: 'O evento "Interfatec - jogo de futsal" que você declarou interesse está chegando.' },
     { id: 2, icon: CancelIcon, text: 'O evento "Interfatec - jogo de futsal" que você declarou interesse foi cancelado.' },
@@ -16,7 +20,12 @@ const Notifications = memo(() => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.headerText}>D.A FATEC JD</Text>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+          <Image source={BackIcon} style={styles.backIcon} />
+        </TouchableOpacity>
+      </View>
+
       <ScrollView style={styles.notificationsList}>
         {notifications.map((notification) => (
           <View key={notification.id} style={styles.notificationItem}>
@@ -35,12 +44,25 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     paddingTop: 20,
   },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 15,
+    marginBottom: 10,
+  },
+  backButton: {
+    marginRight: 10,
+  },
+  backIcon: {
+    width: 30,
+    height: 30,
+  },
   headerText: {
     fontSize: 18,
     fontWeight: 'bold',
     color: '#5D17EB',
     textAlign: 'center',
-    marginBottom: 10,
+    flex: 1,
   },
   notificationsList: {
     paddingHorizontal: 15,
