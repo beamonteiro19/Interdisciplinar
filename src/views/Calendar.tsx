@@ -135,7 +135,7 @@ const Calendar = () => {
             <View style={{width:'90%', marginTop: 30}}>
             <Text style={styles.dataCompleta}>segunda-feira, dia 9 de setembro de 2024:</Text>
             </View>
-           <CardEventos titulo='INTERFACE: JOGO DE FUTSAL' inscritos='30' endereco='R. XXXXXXXX, n 24' dataEvento='17 jul'/>
+           <CardEventos titulo='INTERFATEC: JOGO DE FUTSAL' inscritos='30' endereco='R. XXXXXXXX, n 24' dataEvento='17 jul'/>
         </View>
         </ScrollView>
     );
