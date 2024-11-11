@@ -15,13 +15,14 @@ import Sports from './src/views/Sports';
 import ContactUs from './src/views/ContactUs';
 import Details from './src/views/Details';
 import Gallery from './src/views/Gallery';
-import Notifications from './src/views/Notifications';
 import Eventos from './src/views/Eventos';
 import DetalhesEventos from './src/views/DetalhesEventos';
 import FormEvento from './src/views/FormEvento';
 import { ContaCriada } from './src/views/SignUp';
 import { SenhaAlterada } from './src/views/RedefinePassword';
 import { MudarSenha } from './src/views/RedefinePassword';
+import { Documents } from './src/views/Informations';
+import ContactUsDA from './src/views/ContactUsDA';
 
 const Stack = createStackNavigator();
 
@@ -95,11 +96,6 @@ function App() {
           options={{ headerShown: false }} 
         />
         <Stack.Screen 
-          name="Notifications" 
-          component={Notifications} 
-          options={{ headerShown: false }} 
-        />
-        <Stack.Screen 
           name="Eventos" 
           component={Eventos} 
           options={{ headerShown: false }} 
@@ -127,6 +123,16 @@ function App() {
         <Stack.Screen 
           name="MudarSenha" 
           component={MudarSenha} 
+          options={{ headerShown: false }} 
+        />
+        <Stack.Screen 
+          name="Documents" 
+          component={Documents} 
+          options={{ headerShown: false }} 
+        />
+        <Stack.Screen 
+          name="ContactUsDA" 
+          component={ContactUsDA} 
           options={{ headerShown: false }} 
         />
       </Stack.Navigator>
