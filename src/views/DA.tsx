@@ -2,7 +2,7 @@ import React from 'react';
 import { View, TouchableOpacity, Image, StyleSheet, Text } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import ContactUs from '../views/ContactUs';
+import ContactUsDA from '../views/ContactUs';
 import Membros from './MembrosDA';
 import Informations from './Informations';
 import { useNavigation } from '@react-navigation/native';
@@ -91,7 +91,7 @@ const DAStack= () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="DA" component={DA} />
-      <Stack.Screen name="Fale Conosco" component={ContactUs} />
+      <Stack.Screen name="Fale Conosco" component={ContactUsDA} />
     </Stack.Navigator>
   );
 };
