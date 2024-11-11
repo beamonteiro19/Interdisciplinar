@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
     quemSomosText: {
         color: '#F3C04D',
         fontSize: 20,
+        fontFamily: 'Bryndan Write_fix',
     },
     title: {
         fontSize: 20,
