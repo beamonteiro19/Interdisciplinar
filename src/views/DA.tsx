@@ -159,7 +159,6 @@ const styles = StyleSheet.create({
   },
   tabText: {
     color: '#F3C04D',
-    fontWeight: 'bold',
     fontSize: 14,
     fontFamily:'Bryndan Write_fix', 
   },
