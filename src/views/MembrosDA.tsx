@@ -70,8 +70,7 @@ const styles = StyleSheet.create({
     fontFamily:'Bryndan Write_fix', 
   },
   nameText: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 18,
     fontFamily:'Bryndan Write_fix', 
   },
   roleText: {
