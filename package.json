@@ -31,6 +31,11 @@
     "react-native-vector-icons": "^10.2.0",
     "styled-components": "^6.1.13"
   },
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
+  },
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@babel/preset-env": "^7.25.3",
