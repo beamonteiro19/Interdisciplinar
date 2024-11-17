@@ -105,7 +105,7 @@ const DetalhesEventos = () => {
                 </TouchableOpacity>
                 {eventType === "Eventos que participei" && (
                <Button  buttonStyle={styles.buttonPresenca} title={'Galeria'} titleStyle={styles.textPresenca} 
-               containerStyle={{backgroundColor: 'red', borderRadius: 20}} onPress={toggleOverlay}/>
+               containerStyle={{backgroundColor: 'red', borderRadius: 20}} onPress={() => navigation.navigate('GalleryEventos')}/>
             )}
             {eventType === "Eventos" && (
                <Button  buttonStyle={styles.buttonPresenca} title={'Confirmar presença'} titleStyle={styles.textPresenca} 
