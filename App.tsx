@@ -23,7 +23,7 @@ import { SenhaAlterada } from './src/views/RedefinePassword';
 import { MudarSenha } from './src/views/RedefinePassword';
 import { Documents } from './src/views/Informations';
 import ContactUsDA from './src/views/ContactUsDA';
-import GalleryDA from './src/views/GalleryDA';
+import GalleryEventos from './src/views/GalleryEventos';
 
 const Stack = createStackNavigator();
 
@@ -137,8 +137,8 @@ function App() {
           options={{ headerShown: false }} 
         />
         <Stack.Screen 
-          name="GalleryDA" 
-          component={GalleryDA} 
+          name="GalleryEventos" 
+          component={GalleryEventos} 
           options={{ headerShown: false }} 
         />
       </Stack.Navigator>
