@@ -23,6 +23,7 @@ import { SenhaAlterada } from './src/views/RedefinePassword';
 import { MudarSenha } from './src/views/RedefinePassword';
 import { Documents } from './src/views/Informations';
 import ContactUsDA from './src/views/ContactUsDA';
+import GalleryDA from './src/views/GalleryDA';
 
 const Stack = createStackNavigator();
 
@@ -133,6 +134,11 @@ function App() {
         <Stack.Screen 
           name="ContactUsDA" 
           component={ContactUsDA} 
+          options={{ headerShown: false }} 
+        />
+        <Stack.Screen 
+          name="GalleryDA" 
+          component={GalleryDA} 
           options={{ headerShown: false }} 
         />
       </Stack.Navigator>
