@@ -10,6 +10,8 @@ import MenuOptionsIcon from '../images/icons/menuOptions.png';
 import ProfileIcon from '../images/icons/perfilHome.png';
 import ProfileIconPost from '../images/icons/perfil.png';
 
+
+
 const Profile = () => {
   const navigation = useNavigation();
   const [chatVisible, setChatVisible] = useState(false);
