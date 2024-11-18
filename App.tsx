@@ -24,16 +24,18 @@ import { MudarSenha } from './src/views/RedefinePassword';
 import { Documents } from './src/views/Informations';
 import ContactUsDA from './src/views/ContactUsDA';
 import GalleryEventos from './src/views/GalleryEventos';
+import ProfileAluno from './src/views/ProfileAluno';
+import EditPerfilALuno from './src/views/EditPerfilAluno';
 
 const Stack = createStackNavigator();
 
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator initialRouteName="ProfileAluno">
         <Stack.Screen 
-          name="Login" 
-          component={Login} 
+          name="ProfileAluno" 
+          component={ProfileAluno} 
           options={{ headerShown: false }} 
         />
         <Stack.Screen 
@@ -139,6 +141,11 @@ function App() {
         <Stack.Screen 
           name="GalleryEventos" 
           component={GalleryEventos} 
+          options={{ headerShown: false }} 
+        />
+        <Stack.Screen 
+          name="EditPerfilALuno" 
+          component={EditPerfilALuno} 
           options={{ headerShown: false }} 
         />
       </Stack.Navigator>
