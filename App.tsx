@@ -32,10 +32,10 @@ const Stack = createStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="ProfileAluno">
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen 
-          name="ProfileAluno" 
-          component={ProfileAluno} 
+          name="Login" 
+          component={Login} 
           options={{ headerShown: false }} 
         />
         <Stack.Screen 
@@ -146,6 +146,11 @@ function App() {
         <Stack.Screen 
           name="EditPerfilALuno" 
           component={EditPerfilALuno} 
+          options={{ headerShown: false }} 
+        />
+        <Stack.Screen 
+          name="ProfileAluno" 
+          component={ProfileAluno} 
           options={{ headerShown: false }} 
         />
       </Stack.Navigator>
