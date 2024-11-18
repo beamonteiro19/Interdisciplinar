@@ -142,7 +142,8 @@ const DetalhesEventos = () => {
                 isVisible={visible} onBackdropPress={modalDesistir} 
                 overlayStyle={{width: '100%', height: '70%', justifyContent: 'flex-start', borderTopRightRadius: 50, borderTopLeftRadius: 50, top: '15%' }} >
                     <View style={{width: '100%', height: '90%', justifyContent: 'flex-start', alignItems: 'center', padding: 15, rowGap: 30, top: 10}}>
-                    <CardEventos  iconCard={require('../images/icons/setaDireita.png')} titulo='INTERFACE: JOGO DE FUTSAL' inscritos='30' endereco='R. XXXXXXXX, n 24' dataEvento='17 jul' imagem={require('../images/imagemEvento.png')} tipoEvento="Esporte"/>
+                    <CardEventos  iconCard={require('../images/icons/setaDireita.png')} titulo='INTERFACE: JOGO DE FUTSAL' inscritos='30' endereco='R. XXXXXXXX, n 24' dataEvento='17 jul' imagem={require('../images/imagemEvento.png')} tipoEvento="Esporte"
+                    desabilitarBotao={true}/>
             <TitleGrande style={{color: 'black', textAlign: 'center', fontSize: 24}}>Desistir do Evento?</TitleGrande>
             <View style={{flexDirection: 'row', columnGap: 35}}>
                     <Button title={'Cancelar'} 
