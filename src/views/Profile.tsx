@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import ChatModal from '../views/ChatModal';
@@ -10,12 +11,33 @@ import MenuOptionsIcon from '../images/icons/menuOptions.png';
 import ProfileIcon from '../images/icons/perfilHome.png';
 import ProfileIconPost from '../images/icons/perfil.png';
 
+export const ItensMenu = () => {
+  const navigation = useNavigation();
 
+  //const navigateToEvents = (type: string) => {
+  // navigation.navigate('Eventos', { eventType: type });
+  // };
+  return (
+    <View style={{ backgroundColor: '#5D17EB', borderRadius: 10, alignItems: 'center', justifyContent: 'space-evenly', width: 174, height: 130 }}>
+      <TouchableOpacity onPress={() => navigation.navigate('EditarEvento')} style={{ width: '100%', alignItems: 'center', borderBottomColor: 'white', borderBottomWidth: 2, height: 54, justifyContent: 'center' }}>
+        <Text style={{ fontSize: 22, textAlign: 'center', color: 'white', fontFamily: 'Bryndan Write_fix' }}>Editar</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate("Meus eventos")} style={{ width: '100%', alignItems: 'center', height: 54, justifyContent: 'center' }}>
+        <Text style={{ fontSize: 22, textAlign: 'center', color: 'white', fontFamily: 'Bryndan Write_fix' }}>Excluir</Text>
+      </TouchableOpacity>
+    </View>
+  )
+}
 
 const Profile = () => {
   const navigation = useNavigation();
   const [chatVisible, setChatVisible] = useState(false);
   const [sidebarVisible, setSidebarVisible] = useState(false);
+  const [menu, setMenu] = useState(false);
+
+  function mostrarMenu() {
+    setMenu(!menu);
+  }
 
   return (
     <ScrollView style={styles.container}>
@@ -34,15 +56,15 @@ const Profile = () => {
         </TouchableOpacity>
       </View>
 
-    <View style={styles.postContainer}>
-    <View style={styles.postHeader}>
-      <Text style={styles.postPrincipal}>Descrição Perfil</Text>
-      <TouchableOpacity>
-        <Image source={CanetaUsuarioIcon} style={styles.canetaUsuarioIcon} />
-      </TouchableOpacity>
-    </View>
-    </View>
-   
+      <View style={styles.postContainer}>
+        <View style={styles.postHeader}>
+          <Text style={styles.postPrincipal}>Descrição Perfil</Text>
+          <TouchableOpacity>
+            <Image source={CanetaUsuarioIcon} style={styles.canetaUsuarioIcon} />
+          </TouchableOpacity>
+        </View>
+      </View>
+
       <Text style={styles.postPrincipal}>Minhas pubicações:</Text>
 
 
@@ -52,11 +74,16 @@ const Profile = () => {
             <Image source={ProfileIconPost} style={styles.profilePostIcon} />
           </View>
           <Text style={styles.username}>User1246658</Text>
-        
-            <TouchableOpacity>
-            <Image source={MenuOptionsIcon} style={styles.menuOptionsIcon} />
+
+          <TouchableOpacity style={styles.menuContainer} onPress={mostrarMenu}>
+            <Image source={require('../images/icons/menuOptions.png')} style={styles.menu} />
           </TouchableOpacity>
 
+          {menu && (
+            <View style={styles.menuDropdown}>
+              <ItensMenu />
+            </View>
+          )}
         </View>
         <Image source={{ uri: 'https://via.placeholder.com/300x200' }} style={styles.postImage} />
         <Text style={styles.postText}>Descrição da publicação...</Text>
@@ -66,6 +93,8 @@ const Profile = () => {
           </TouchableOpacity>
         </View>
       </View>
+
+
 
       {/* Modais */}
       <ChatModal visible={chatVisible} onClose={() => setChatVisible(false)} />
@@ -91,9 +120,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   profileIconContainer: {
-    backgroundColor: '#D9D9D9', 
-    borderRadius: 20, 
-    padding: 5, 
+    backgroundColor: '#D9D9D9',
+    borderRadius: 20,
+    padding: 5,
+  },
+  postHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between', // Espaço uniforme entre itens
+    marginBottom: 5,
   },
   profileIcon: {
     width: 30,
@@ -109,13 +144,22 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginLeft: 8,
   },
-  menuContainer: {
-    alignItems: 'flex-start',
-    paddingHorizontal: 15,
-    marginTop: 10,
+  menu: {
+    alignSelf: 'flex-end',
+    marginTop: 10
   },
-  menuButton: {
-    padding: 10,
+  menuContainer: {
+    alignSelf: 'center', // Centraliza o botão do menu na mesma linha
+    marginLeft: 'auto',  // Empurra para o final do container
+  },
+  menuDropdown: {
+    marginTop: 10,
+    zIndex: 10,
+    position: 'absolute',
+    right: 5,
+    top: 15,
+    elevation: 10,
+    pointerEvents: 'box-none',
   },
   postContainer: {
     backgroundColor: '#FFF',
@@ -127,22 +171,17 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     elevation: 2,
   },
-  postHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 5,
-  },
-    postPrincipal: {
+  postPrincipal: {
     flexDirection: 'row',
     alignItems: 'center',
     margin: 10,
   },
   postProfileIconContainer: {
-    backgroundColor: '#D9D9D9', 
+    backgroundColor: '#D9D9D9',
     borderRadius: 20,
-    padding: 5, 
-    marginRight: 8, 
-    borderWidth: 1, 
+    padding: 5,
+    marginRight: 8,
+    borderWidth: 1,
     borderColor: '#5D17EB',
   },
   postProfileIcon: {
@@ -166,19 +205,19 @@ const styles = StyleSheet.create({
   actionsContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    paddingHorizontal: 10, 
-},
-actionIcon: {
+    paddingHorizontal: 10,
+  },
+  actionIcon: {
     width: 30,
     height: 30,
     marginRight: 15,
-},
-favIcon: {
+  },
+  favIcon: {
     width: 30,
     height: 30,
     marginRight: 15,
     marginLeft: 230,
-},
+  },
   exitIcon: {
     width: 30,
     height: 30,
@@ -202,4 +241,3 @@ favIcon: {
 });
 
 export default Profile;
-    
