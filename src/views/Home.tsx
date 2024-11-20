@@ -1,13 +1,20 @@
-import React, { useState } from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+  ScrollView,
+} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import ChatModal from '../views/ChatModal';
 import Sidebar from '../views/Sidebar';
 import HeartIcon from '../images/icons/coracao.png';
 import ChatIcon from '../images/icons/comentario.png';
 import FavIcon from '../images/icons/estrela.png';
 import NotificationIcon from '../images/icons/sino.png';
-import MenuIcon from '../images/icons/menu-hamburguer.png'; 
+import MenuIcon from '../images/icons/menu-hamburguer.png';
 import ProfileIcon from '../images/icons/perfilHome.png';
 import ProfileIconPost from '../images/icons/perfil.png';
 
@@ -23,7 +30,7 @@ const Home = () => {
           <View style={styles.profileIconContainer}>
             <Image source={ProfileIcon} style={styles.profileIcon} />
           </View>
-          <Text style={styles.profileText}>USER_484165</Text>
+          <Text style={styles.profileText}>D.A FATEC JD</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('Notifications')}>
           <Image source={NotificationIcon} style={styles.notificationIcon} />
@@ -31,7 +38,9 @@ const Home = () => {
       </View>
 
       <View style={styles.menuContainer}>
-        <TouchableOpacity style={styles.menuButton} onPress={() => setSidebarVisible(true)}>
+        <TouchableOpacity
+          style={styles.menuButton}
+          onPress={() => setSidebarVisible(true)}>
           <Image source={MenuIcon} style={styles.actionIcon} />
         </TouchableOpacity>
       </View>
@@ -43,7 +52,10 @@ const Home = () => {
           </View>
           <Text style={styles.username}>User1246658</Text>
         </View>
-        <Image source={{ uri: 'https://via.placeholder.com/300x200' }} style={styles.postImage} />
+        <Image
+          source={{uri: 'https://via.placeholder.com/300x200'}}
+          style={styles.postImage}
+        />
         <Text style={styles.postText}>Evento da InterFatecs 2024...</Text>
         <View style={styles.actionsContainer}>
           <TouchableOpacity>
@@ -60,7 +72,10 @@ const Home = () => {
 
       {/* Modais */}
       <ChatModal visible={chatVisible} onClose={() => setChatVisible(false)} />
-      <Sidebar visible={sidebarVisible} onClose={() => setSidebarVisible(false)} />
+      <Sidebar
+        visible={sidebarVisible}
+        onClose={() => setSidebarVisible(false)}
+      />
     </ScrollView>
   );
 };
@@ -82,9 +97,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   profileIconContainer: {
-    backgroundColor: '#D9D9D9', 
-    borderRadius: 20, 
-    padding: 5, 
+    backgroundColor: '#D9D9D9',
+    borderRadius: 20,
+    padding: 5,
   },
   profileIcon: {
     width: 30,
@@ -97,7 +112,7 @@ const styles = StyleSheet.create({
   profileText: {
     color: '#FFF',
     fontSize: 18,
-    fontWeight: 'bold',
+    fontFamily: 'Bryndan Write_fix',
     marginLeft: 8,
   },
   menuContainer: {
@@ -124,11 +139,11 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   postProfileIconContainer: {
-    backgroundColor: '#D9D9D9', 
+    backgroundColor: '#D9D9D9',
     borderRadius: 20,
-    padding: 5, 
-    marginRight: 8, 
-    borderWidth: 1, 
+    padding: 5,
+    marginRight: 8,
+    borderWidth: 1,
     borderColor: '#5D17EB',
   },
   postProfileIcon: {
@@ -136,8 +151,8 @@ const styles = StyleSheet.create({
     height: 30,
   },
   username: {
-    fontWeight: 'bold',
-    color: '#5D17EB',
+    color: 'black',
+    fontFamily: 'Bryndan Write_fix',
   },
   postImage: {
     width: '100%',
@@ -148,23 +163,24 @@ const styles = StyleSheet.create({
   postText: {
     color: '#333',
     marginBottom: 10,
+    fontFamily: 'Bryndan Write_fix',
   },
   actionsContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    paddingHorizontal: 10, 
-},
-actionIcon: {
+    paddingHorizontal: 10,
+  },
+  actionIcon: {
     width: 30,
     height: 30,
     marginRight: 15,
-},
-favIcon: {
+  },
+  favIcon: {
     width: 30,
     height: 30,
     marginRight: 15,
     marginLeft: 230,
-},
+  },
   notificationIcon: {
     width: 30,
     height: 30,
