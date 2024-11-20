@@ -103,8 +103,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
-    fontWeight: 'bold',
-    color: '#5D17EB',
+    fontFamily: 'Bryndan Write_fix',
   },
   menuItems: {
     marginTop: 20,
@@ -121,7 +120,8 @@ const styles = StyleSheet.create({
   },
   menuText: {
     fontSize: 16,
-    color: '#333',
+    color: '#5D17EB',
+    fontFamily: 'Bryndan Write_fix',
   },
 });
 
