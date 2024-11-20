@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 16,
     color: '#333',
+    fontFamily: 'Bryndan Write_fix',
   },
 });
 
