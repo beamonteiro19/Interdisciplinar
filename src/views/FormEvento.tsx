@@ -6,6 +6,7 @@ import {Picker} from '@react-native-picker/picker';
 import {ThemeProvider, Button, Overlay } from "@rneui/themed";
 import theme from "../styles/theme";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import { Icon } from '@rneui/themed';
 
 
 export const ConjuntoFotos = () => {
@@ -47,7 +48,7 @@ const FormEvento = () => {
         <ScrollView style={{flex: 1, backgroundColor: 'white', paddingBottom: 35}}>
         <View style={styles.container}>
             <TouchableOpacity onPress={() => navigation.goBack()} style={{alignSelf: 'flex-start', left: 15, top: 20}}>
-            <Image source={require('../images/icons/setaEsquerda.png')} />
+            <Icon name='arrowleft' type='ant-design' color={'#5D17EB'} size={27}/>
             </TouchableOpacity>
             <View style={styles.containerTopo}>
             <TitlePequeno style={{color: '#5D17EB', textAlign: 'center'}}>CRIAR NOVO EVENTO</TitlePequeno>
@@ -69,7 +70,7 @@ const FormEvento = () => {
             {/*seção do form */}
             <View style={styles.containerForm}>
                 <TitlePequeno style={{color: '#5D17EB', textAlign: 'left', alignSelf: 'flex-start'}}>Detalhes do evento:</TitlePequeno>
-               <InputFormEventos placeholder="Nome do evento:"/>
+               <InputFormEventos placeholder="Nome do evento:" placeholderTextColor={'#999393'}/>
             
             {/*picker para selecionar o tipo do evento*/}
                <FundoPickerEventos >
@@ -103,8 +104,8 @@ const FormEvento = () => {
                     mode="date"
                     onConfirm={handleConfirm}
                     onCancel={hideDatePicker}/>
-               <InputFormEventos placeholder="Horário:"/>
-               <InputFormEventos placeholder="Localização:"/>
+               <InputFormEventos placeholder="Horário:" placeholderTextColor={'#999393'}/>
+               <InputFormEventos placeholder="Localização:" placeholderTextColor={'#999393'}/>
                <ThemeProvider theme={theme}>
                 <Button containerStyle={{width: '100%'}} buttonStyle={{width: '100%', borderRadius: 30}} title={'publicar'}
                 onPress={toggleOverlay}/>
