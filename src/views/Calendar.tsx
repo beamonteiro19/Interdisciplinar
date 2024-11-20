@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView} from 'react-native';
+import { Icon } from '@rneui/themed';
 import {ContainerJogos} from '../styles/styled';
 import { useNavigation } from '@react-navigation/native';
 
@@ -34,7 +35,7 @@ export const CardEventos = ({titulo, inscritos, endereco, dataEvento}:props)=>{
                 </View>
             </View>
             <View style={{flexDirection: 'row', alignItems: 'center', columnGap: 5}}>
-                    <Image source={require('../images/icons/localizacao.png')}/>
+                    <Icon name='location-pin' type='entypo' size={13}/>
                     <Text style={{fontSize: 10, color: 'black', fontFamily: 'Bryndan Write_fix'}}>{endereco}</Text>
                 </View>
         </ContainerJogos>
@@ -82,7 +83,7 @@ const Calendar = () => {
       </View>
       <TouchableOpacity style={{alignSelf: 'flex-end', right: 20}}
       onPress={mostrarMenu} >
-      <Image source={require('../images/icons/menuOptions.png')} style={styles.menu}/>
+       <Icon name='more-horizontal' type='feather' color={'#5D17EB'} size={44}/>
       </TouchableOpacity>
       {menu && ( 
         <View style={{ marginTop: 20, zIndex: 2, position: 'absolute', top: 75, right: 10,}}>
@@ -96,11 +97,11 @@ const Calendar = () => {
             <View style={styles.mesContainer}>
                 <View style={styles.meses}> 
                     <TouchableOpacity>
-                <Image source={require('../images/icons/setaEsquerda.png')}/>
+                <Icon name='arrowleft' type='ant-design' color={'#5D17EB'} size={27}/>
                 </TouchableOpacity>
                 <Text style={styles.textMes}>Julho</Text>
                 <TouchableOpacity>
-                <Image source={require('../images/icons/setaDireita.png')}/>
+                <Icon name='arrowright' type='ant-design' color={'#5D17EB'} size={27}/>
                 </TouchableOpacity>
                 </View>
             </View>
@@ -127,7 +128,7 @@ const Calendar = () => {
                 </View>
                 <TouchableOpacity onPress={() => navigation.navigate("FormEvento")}>
                 <View style={styles.add}>
-                    <Image source={require('../images/icons/mais.png')}/>
+                    <Icon name='add' type='ionicons' color={'#5D17EB'} size={27}/>
                 <Text style={{fontSize: 18, color: '#5D17EB', fontFamily: 'Bryndan Write_fix'}}>ADD</Text>
                 </View>
                 </TouchableOpacity>
