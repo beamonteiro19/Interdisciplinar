@@ -1,6 +1,6 @@
 import { View, StyleSheet, Text, Image, TouchableOpacity} from "react-native";
 import { useNavigation } from '@react-navigation/native';
-import { Overlay, Button } from '@rneui/themed'
+import { Overlay, Button, Icon} from '@rneui/themed'
 import { InputLogin } from "../styles/styled";
 import { ScrollView } from "react-native-gesture-handler";
 
@@ -15,7 +15,7 @@ const EditPerfilALuno = () => {
                 <View style={styles.header}>
                     <View style={styles.containerHeader}>
                         <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <Image source={require('../images/icons/setaEsquerda.png')} style={styles.voltar}/>
+                        <Icon name='arrowleft' type='ant-design' color={'white'} size={27}/>
                     </TouchableOpacity>
                     <Text style={styles.headerText}>USER_484165</Text>
                     </View>
@@ -113,10 +113,6 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontFamily: 'Bryndan Write_fix',
     },
-    voltar: {
-        tintColor: 'white'
-    }
-
-
+   
 })
 export default EditPerfilALuno;
