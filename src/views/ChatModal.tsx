@@ -49,9 +49,9 @@ const styles = StyleSheet.create({
   },
   chatTitle: {
     fontSize: 18,
-    fontWeight: 'bold',
     color: '#5D17EB',
     marginBottom: 15,
+    fontFamily: 'Bryndan Write_fix',
   },
   chatMessages: {
     marginBottom: 15,
@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 14,
     color: '#333',
+    fontFamily: 'Bryndan Write_fix',
   },
   chatInputContainer: {
     flexDirection: 'row',
@@ -80,6 +81,8 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderColor: '#E0E0E0',
     paddingTop: 10,
+    backgroundColor: '#E0E0E0',
+    padding: 10,
   },
   chatInputIcon: {
     width: 25,
@@ -88,6 +91,7 @@ const styles = StyleSheet.create({
   chatInput: {
     flex: 1,
     fontSize: 14,
+    fontFamily: 'Bryndan Write_fix',
   },
 });
 
