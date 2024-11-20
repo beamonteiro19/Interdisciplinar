@@ -15,11 +15,12 @@ interface props {
   tipoEvento: string;
   imagem: undefined;
   iconCard: undefined;
+  desabilitarBotao: boolean;
 }
 
 {/* card de eventos da atletica e DA */}
 
- export const CardEventos = ({titulo, inscritos, endereco, dataEvento, tipoEvento, imagem, iconCard}:props)=>{ 
+ export const CardEventos = ({titulo, inscritos, endereco, dataEvento, tipoEvento, imagem, iconCard, desabilitarBotao}:props)=>{ 
   const route = useRoute();
   const navigation = useNavigation();
   const [visible, setVisible] = useState(false);
@@ -78,13 +79,14 @@ const modalDesistir = () => {
             )}
             {eventType === "Meus eventos" && (
                 <View style={{marginLeft: 15, rowGap: 10}}>
-                <Button buttonStyle={styles.buttonCard} title={'Detalhes'} titleStyle={styles.textButtonCard} onPress={() => navigateToEvents("Meus eventos")}/>
-                <Button buttonStyle={styles.buttonCard}title={'Desistir'} titleStyle={styles.textButtonCard} onPress={modalDesistir}/>
+                <Button buttonStyle={styles.buttonCard} title={'Detalhes'} titleStyle={styles.textButtonCard} onPress={() => navigateToEvents("Meus eventos")} disabled={desabilitarBotao} disabledStyle={{borderColor: 'white', backgroundColor: 'white'}} disabledTitleStyle={{color: 'white'}}/>
+                <Button buttonStyle={styles.buttonCard}title={'Desistir'} titleStyle={styles.textButtonCard} onPress={modalDesistir} disabled={desabilitarBotao} disabledStyle={{borderColor: 'white', backgroundColor: 'white'}} disabledTitleStyle={{color: 'white'}}/>
                 <Overlay
                 isVisible={visible} onBackdropPress={modalDesistir} 
                 overlayStyle={{width: '100%', height: '70%', justifyContent: 'flex-start', borderTopRightRadius: 50, borderTopLeftRadius: 50, top: '15%' }} >
                     <View style={{width: '100%', height: '90%', justifyContent: 'flex-start', alignItems: 'center', padding: 15, rowGap: 30, top: 10}}>
-                    <CardEventos  iconCard={require('../images/icons/setaDireita.png')} titulo='INTERFACE: JOGO DE FUTSAL' inscritos='30' endereco='R. XXXXXXXX, n 24' dataEvento='17 jul' imagem={require('../images/imagemEvento.png')} tipoEvento="Esporte"/>
+                    <CardEventos  iconCard={require('../images/icons/setaDireita.png')} titulo='INTERFACE: JOGO DE FUTSAL' inscritos='30' endereco='R. XXXXXXXX, n 24' dataEvento='17 jul' imagem={require('../images/imagemEvento.png')} tipoEvento="Esporte"
+                    desabilitarBotao={true}/>
             <TitleGrande style={{color: 'black', textAlign: 'center', fontSize: 24}}>Desistir do Evento?</TitleGrande>
             <View style={{flexDirection: 'row', columnGap: 35}}>
                     <Button title={'Cancelar'} 

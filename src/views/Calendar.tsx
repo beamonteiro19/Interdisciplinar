@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView} from 'react-native';
+import { Icon } from '@rneui/themed';
 import {ContainerJogos} from '../styles/styled';
 import { useNavigation } from '@react-navigation/native';
 
@@ -14,14 +15,14 @@ export const CardEventos = ({titulo, inscritos, endereco, dataEvento}:props)=>{
     return(
         <ContainerJogos>
             <View style={{flexDirection: 'row', width: '100%', justifyContent: 'space-between', alignItems: 'center'}}> 
-            <Text style={{fontSize: 15, color: 'black'}}>{titulo}</Text>
+            <Text style={{fontSize: 15, color: 'black', fontFamily: 'Sprite Graffiti Regular',}}>{titulo}</Text>
             <View style={{backgroundColor: '#5D17EB', borderRadius: 3}}>
-                    <Text style={{color: 'white', paddingHorizontal: 6, fontSize: 13}}>{dataEvento}</Text>
+                    <Text style={{color: 'white', paddingHorizontal: 6, fontSize: 13, fontFamily: 'Bryndan Write_fix', paddingVertical: 2}}>{dataEvento}</Text>
                 </View>
             </View>
             <View style={{flexDirection: 'row', columnGap: 10, marginTop: 10}}>
                 <View style={{borderWidth: 1, borderColor: '#5D17EB', borderRadius: 5, height: 19, width: 44, alignItems: 'center', justifyContent: 'center'}}>
-                    <Text style={{fontSize: 10, color: '#5D17EB', textAlign: 'center'}}>Esporte</Text>
+                    <Text style={{fontSize: 10, color: '#5D17EB', textAlign: 'center', fontFamily: 'Bryndan Write_fix'}}>Esporte</Text>
                 </View>
                 <View style={{width: 105, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
                 <View style={{width: 80, height: 30, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
@@ -30,12 +31,12 @@ export const CardEventos = ({titulo, inscritos, endereco, dataEvento}:props)=>{
                 <Image source={require('../images/icons/perfilCalendar.png')} style={{zIndex: 3, marginLeft: -15}}/>
                 <Image source={require('../images/icons/perfilCalendar.png')} style={{zIndex: 4, marginLeft: -15}}/>
                 </View>
-                <Text style={{fontSize: 12, color: '#999393', bottom: 5}}>+{inscritos}</Text>
+                <Text style={{fontSize: 12, color: '#999393', bottom: 5, fontFamily: 'Bryndan Write_fix'}}>+{inscritos}</Text>
                 </View>
             </View>
             <View style={{flexDirection: 'row', alignItems: 'center', columnGap: 5}}>
-                    <Image source={require('../images/icons/localizacao.png')}/>
-                    <Text style={{fontSize: 10, color: 'black'}}>{endereco}</Text>
+                    <Icon name='location-pin' type='entypo' size={13}/>
+                    <Text style={{fontSize: 10, color: 'black', fontFamily: 'Bryndan Write_fix'}}>{endereco}</Text>
                 </View>
         </ContainerJogos>
     )
@@ -49,13 +50,13 @@ export const ItensMenu = () =>{
     return(
         <View style={{backgroundColor: '#5D17EB', borderRadius: 10, alignItems: 'center', justifyContent: 'space-evenly', width: 174, height: 170}}>
             <TouchableOpacity onPress={() => navigateToEvents("Eventos")} style={{ width: '100%',alignItems: 'center', borderBottomColor: 'white', borderBottomWidth:2, height:54, justifyContent: 'center'}}>
-                <Text style={{fontSize: 22, textAlign: 'center', color: 'white'}}>Eventos</Text>
+                <Text style={{fontSize: 22, textAlign: 'center', color: 'white', fontFamily: 'Bryndan Write_fix'}}>Eventos</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigateToEvents("Meus eventos")} style={{ width: '100%', alignItems: 'center', borderBottomColor: 'white', borderBottomWidth:2,height:54, justifyContent: 'center'}}>
-                <Text style={{fontSize: 22, textAlign: 'center',color: 'white'}}>Meus Eventos</Text>
+                <Text style={{fontSize: 22, textAlign: 'center',color: 'white', fontFamily: 'Bryndan Write_fix'}}>Meus Eventos</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigateToEvents("Eventos que participei")} style={{ width: '100%', alignItems: 'center', height:60, justifyContent: 'center'}}>
-                <Text style={{fontSize: 22, textAlign: 'center', color: 'white'}}>Eventos que participei</Text>
+                <Text style={{fontSize: 22, textAlign: 'center', color: 'white', fontFamily: 'Bryndan Write_fix'}}>Eventos que participei</Text>
             </TouchableOpacity>
         </View>
     )
@@ -82,7 +83,7 @@ const Calendar = () => {
       </View>
       <TouchableOpacity style={{alignSelf: 'flex-end', right: 20}}
       onPress={mostrarMenu} >
-      <Image source={require('../images/icons/menuOptions.png')} style={styles.menu}/>
+       <Icon name='more-horizontal' type='feather' color={'#5D17EB'} size={44}/>
       </TouchableOpacity>
       {menu && ( 
         <View style={{ marginTop: 20, zIndex: 2, position: 'absolute', top: 75, right: 10,}}>
@@ -96,21 +97,21 @@ const Calendar = () => {
             <View style={styles.mesContainer}>
                 <View style={styles.meses}> 
                     <TouchableOpacity>
-                <Image source={require('../images/icons/setaEsquerda.png')}/>
+                <Icon name='arrowleft' type='ant-design' color={'#5D17EB'} size={27}/>
                 </TouchableOpacity>
                 <Text style={styles.textMes}>Julho</Text>
                 <TouchableOpacity>
-                <Image source={require('../images/icons/setaDireita.png')}/>
+                <Icon name='arrowright' type='ant-design' color={'#5D17EB'} size={27}/>
                 </TouchableOpacity>
                 </View>
             </View>
             <View style={styles.containerCalendario}>
                 <View style={styles.dataContainer}>
-                    <Text style={styles.diaSemana}>Qua</Text>
+                    <Text style={styles.diaSemana}>QUA</Text>
                     <Text style={styles.diaEvento}>17</Text>
                 </View>
                 <View style={{width: '60%', alignItems: 'flex-end', paddingRight: 3}}>
-                <Text style={styles.mesEvento}>julho</Text>
+                <Text style={styles.mesEvento}>JULHO</Text>
                 <View style={styles.diasCalendarioContainer}>
                     <View style={styles.containerDia}>
                 <Text style={styles.diaCalendario}>1</Text>
@@ -122,20 +123,20 @@ const Calendar = () => {
             </View>
             <View style={styles.containerAdd}>
                 <View style={styles.dataAtual}>
-                <Text style={{fontSize: 16, color: '#5D17EB'}}>SEG</Text>
-                <Text style={{fontSize: 16, color: '#5D17EB'}}>9</Text>
+                <Text style={{fontSize: 16, color: '#5D17EB', fontFamily: 'Bryndan Write_fix'}}>SEG</Text>
+                <Text style={{fontSize: 16, color: '#5D17EB', fontFamily: 'Bryndan Write_fix'}}>9</Text>
                 </View>
                 <TouchableOpacity onPress={() => navigation.navigate("FormEvento")}>
                 <View style={styles.add}>
-                    <Image source={require('../images/icons/mais.png')}/>
-                <Text style={{fontSize: 18, color: '#5D17EB'}}>ADD</Text>
+                    <Icon name='add' type='ionicons' color={'#5D17EB'} size={27}/>
+                <Text style={{fontSize: 18, color: '#5D17EB', fontFamily: 'Bryndan Write_fix'}}>ADD</Text>
                 </View>
                 </TouchableOpacity>
             </View>
             <View style={{width:'90%', marginTop: 30}}>
             <Text style={styles.dataCompleta}>segunda-feira, dia 9 de setembro de 2024:</Text>
             </View>
-           <CardEventos titulo='INTERFACE: JOGO DE FUTSAL' inscritos='30' endereco='R. XXXXXXXX, n 24' dataEvento='17 jul'/>
+           <CardEventos titulo='INTERFATEC: JOGO DE FUTSAL' inscritos='30' endereco='R. XXXXXXXX, n 24' dataEvento='17 jul'/>
         </View>
         </ScrollView>
     );
@@ -170,8 +171,8 @@ const styles = StyleSheet.create({
       profileText: {
         color: '#FFF',
         fontSize: 18,
-        fontWeight: 'bold',
         marginLeft: 8,
+        fontFamily: 'Bryndan Write_fix'
       },
       menu:{
         alignSelf: 'flex-end',
@@ -183,12 +184,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center', marginBottom: 20
       },
       title: {
-        fontSize: 32,
+        fontSize: 40,
         color: '#5D17EB',
+        fontFamily: 'Sprite Graffiti Regular'
       },
       textMes:{
-        fontSize: 25,
+        fontSize: 30,
         color: '#5D17EB',
+        fontFamily: 'Bryndan Write_fix'
       },
       mesContainer:{
         width: '90%',
@@ -220,21 +223,26 @@ const styles = StyleSheet.create({
         alignItems: 'center',
       },
       diaSemana: {
-        fontSize: 20,
+        fontSize: 64,
         textAlign: 'center',
         color: 'white',
+        fontFamily: 'Heading Now Trial 01 Thin',
+        fontWeight: 'semibold'
       },
       mesEvento:{
-        fontSize: 20,
+        fontSize: 36,
         textAlign: 'right',
         color: 'white',
-        top: 10,
-        right: 5
+        right: 5,
+        fontFamily: 'Heading Now Trial 01 Thin',
+        fontWeight: 'semibold'
       },
       diaEvento: {
         fontSize: 65,
         textAlign: 'center',
         color: 'white',
+        fontFamily: 'Heading Now Trial 01 Thin',
+        fontWeight: 'bold'
       },
       diaCalendario:{
         textAlign: 'center',
@@ -242,7 +250,8 @@ const styles = StyleSheet.create({
         fontSize: 13,
         paddingHorizontal: 6,
         paddingVertical: 4,
-        borderRadius: 3
+        borderRadius: 3,
+        fontFamily: 'Bryndan Write_fix'
       },
       diasCalendarioContainer:{
         width: 170,
@@ -289,9 +298,10 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
       },
       dataCompleta:{
-        fontSize: 12,
+        fontSize: 15,
         textAlign: 'left',
-        marginBottom: 25
+        marginBottom: 25,
+        fontFamily: 'Bryndan Write_fix'
       }
 
       

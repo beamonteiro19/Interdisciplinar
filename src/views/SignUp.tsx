@@ -1,14 +1,12 @@
 import React from "react";
 import { useState } from 'react';
-import { FundoBG, InputLogin, ContainerComponentes, TitlePequeno, FundoPicker, ContainerTopo, TitleGrande} from '../styles/styled';
+import { FundoBG, InputLogin, ContainerComponentes, ContainerTopo, TitleGrande} from '../styles/styled';
 import { ThemeProvider, Button} from '@rneui/themed';
-import {Picker} from '@react-native-picker/picker';
 import theme from '../styles/theme';
 import { View, Image, ScrollView} from "react-native";
 import { useNavigation } from '@react-navigation/native';
 
 const SignUp = () => {
-    const [selecioneCategoria, setSelecioneCategoria] = useState();
     const navigation = useNavigation();
    
 return(
@@ -20,20 +18,8 @@ return(
             
         <ThemeProvider theme={theme}>
             <ScrollView style={{marginTop: 20}}>
-                <View style={{height: 450, alignItems: 'center', justifyContent: 'space-evenly', marginTop: 30}}>
+                <View style={{height: 450, alignItems: 'center', justifyContent: 'space-evenly', marginTop: 30, width: 350, paddingHorizontal: 2}}>
         <InputLogin placeholder='Email Estudantil / RA:' placeholderTextColor={'#999393'}/>
-        <FundoPicker >
-            <TitlePequeno style={{color:'#999393'}}>Selecione se você é:</TitlePequeno>
-        <Picker style={{width: 160, backgroundColor: 'transparent', left: 7, color:'#999393', }}
-        selectedValue={selecioneCategoria}
-        onValueChange={(itemValue, itemIndex) =>
-            setSelecioneCategoria(itemValue)
-        }>
-        <Picker.Item label="D.A" value="da" style={{fontFamily:'Bryndan Write_fix', fontSize: 20}}/>
-        <Picker.Item label="Atlética" value="atletica" style={{fontFamily:'Bryndan Write_fix', fontSize: 20}} />
-        <Picker.Item label="Aluno" value="aluno" style={{fontFamily:'Bryndan Write_fix', fontSize: 20}}/>
-        </Picker>
-        </FundoPicker>
         <InputLogin placeholder='Nome de usuário:' placeholderTextColor={'#999393'} />
         <InputLogin placeholder='Qual seu curso:' placeholderTextColor={'#999393'} />
         <InputLogin placeholder='Crie uma senha:'  placeholderTextColor={'#999393'}/>

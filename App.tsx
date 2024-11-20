@@ -21,6 +21,11 @@ import FormEvento from './src/views/FormEvento';
 import { ContaCriada } from './src/views/SignUp';
 import { SenhaAlterada } from './src/views/RedefinePassword';
 import { MudarSenha } from './src/views/RedefinePassword';
+import { Documents } from './src/views/Informations';
+import ContactUsDA from './src/views/ContactUsDA';
+import GalleryEventos from './src/views/GalleryEventos';
+import ProfileAluno from './src/views/ProfileAluno';
+import EditPerfilALuno from './src/views/EditPerfilAluno';
 
 const Stack = createStackNavigator();
 
@@ -121,6 +126,31 @@ function App() {
         <Stack.Screen 
           name="MudarSenha" 
           component={MudarSenha} 
+          options={{ headerShown: false }} 
+        />
+        <Stack.Screen 
+          name="Documents" 
+          component={Documents} 
+          options={{ headerShown: false }} 
+        />
+        <Stack.Screen 
+          name="ContactUsDA" 
+          component={ContactUsDA} 
+          options={{ headerShown: false }} 
+        />
+        <Stack.Screen 
+          name="GalleryEventos" 
+          component={GalleryEventos} 
+          options={{ headerShown: false }} 
+        />
+        <Stack.Screen 
+          name="EditPerfilALuno" 
+          component={EditPerfilALuno} 
+          options={{ headerShown: false }} 
+        />
+        <Stack.Screen 
+          name="ProfileAluno" 
+          component={ProfileAluno} 
           options={{ headerShown: false }} 
         />
       </Stack.Navigator>
