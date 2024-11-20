@@ -1,13 +1,13 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image} from "react-native";
 import { useNavigation } from '@react-navigation/native';
-
+import { Icon } from '@rneui/themed';
 
 const ContactUsDA  = () => {
     const navigation = useNavigation();
     return(
         <View style={styles.container}>
             <TouchableOpacity onPress={() => navigation.goBack()} style={styles.image}>
-                <Image source={require('../images/icons/setaEsquerda.png')} />
+            <Icon name='arrowleft' type='ant-design' color={'#5D17EB'} size={27}/>
                 </TouchableOpacity>
             <Text style={styles.title}>FALE CONOSCO</Text>
             <View style={styles.containerQuemSomos}>
