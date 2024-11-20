@@ -6,6 +6,7 @@ import { Overlay } from '@rneui/themed'
 import { TitleGrande,  } from "../styles/styled";
 import { useRoute } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
+import { Icon } from '@rneui/themed';
 
 interface props {
   titulo: string;
@@ -14,13 +15,12 @@ interface props {
   dataEvento: string;
   tipoEvento: string;
   imagem: undefined;
-  iconCard: undefined;
   desabilitarBotao: boolean;
 }
 
 {/* card de eventos da atletica e DA */}
 
- export const CardEventos = ({titulo, inscritos, endereco, dataEvento, tipoEvento, imagem, iconCard, desabilitarBotao}:props)=>{ 
+ export const CardEventos = ({titulo, inscritos, endereco, dataEvento, tipoEvento, imagem, desabilitarBotao}:props)=>{ 
   const route = useRoute();
   const navigation = useNavigation();
   const [visible, setVisible] = useState(false);
@@ -74,7 +74,8 @@ const modalDesistir = () => {
             
             {eventType === "Eventos" && (
                 <TouchableOpacity style={{marginLeft: 53, top: 5}} onPress={() => navigateToEvents("Eventos")}>
-                   <Image source={iconCard}/>
+                  <Icon name='arrowright' type='ant-design' color={'#5D17EB'} size={27}/>
+
                     </TouchableOpacity>
             )}
             {eventType === "Meus eventos" && (
@@ -85,7 +86,7 @@ const modalDesistir = () => {
                 isVisible={visible} onBackdropPress={modalDesistir} 
                 overlayStyle={{width: '100%', height: '70%', justifyContent: 'flex-start', borderTopRightRadius: 50, borderTopLeftRadius: 50, top: '15%' }} >
                     <View style={{width: '100%', height: '90%', justifyContent: 'flex-start', alignItems: 'center', padding: 15, rowGap: 30, top: 10}}>
-                    <CardEventos  iconCard={require('../images/icons/setaDireita.png')} titulo='INTERFACE: JOGO DE FUTSAL' inscritos='30' endereco='R. XXXXXXXX, n 24' dataEvento='17 jul' imagem={require('../images/imagemEvento.png')} tipoEvento="Esporte"
+                    <CardEventos  titulo='INTERFACE: JOGO DE FUTSAL' inscritos='30' endereco='R. XXXXXXXX, n 24' dataEvento='17 jul' imagem={require('../images/imagemEvento.png')} tipoEvento="Esporte"
                     desabilitarBotao={true}/>
             <TitleGrande style={{color: 'black', textAlign: 'center', fontSize: 24}}>Desistir do Evento?</TitleGrande>
             <View style={{flexDirection: 'row', columnGap: 35}}>
@@ -143,14 +144,14 @@ const Eventos = () => {
             <View style={styles.header}>
                 <View style={{width: '65%', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
                 <TouchableOpacity style={{left: 0}} onPress={() => navigation.goBack()}>
-                <Image source={require('../images/icons/setaEsquerda.png')} style={{tintColor: 'white'}}/>
+                <Icon name='arrowleft' type='ant-design' color={'white'} size={27}/>
                 </TouchableOpacity>
                 <Text style={styles.titleHeader}>D.A FATEC JD</Text>
                 </View>
             </View>
             <TouchableOpacity style={{alignSelf: 'flex-end', right: 20}}
       onPress={mostrarMenu} >
-      <Image source={require('../images/icons/menuOptions.png')} style={styles.menu}/>
+      <Icon name='more-horizontal' type='feather' color={'#5D17EB'} size={44}/>
       </TouchableOpacity>
 
       {/* menu com os eventos*/}
@@ -193,16 +194,16 @@ const Eventos = () => {
       <View style={{ borderTopLeftRadius: 10, borderTopRightRadius: 10}}>
       <View style={{rowGap: 30, width: '100%'}}>
       {eventType === "Eventos que participei" && (
-                <><CardEventos iconCard={require('../images/icons/setaDireita.png')} imagem={require('../images/imagemEvento.png')} titulo='INTERFATEC: JOGO DE FUTSAL' inscritos='30' endereco='R. XXXXXXXX, n 24' dataEvento='17 jul' tipoEvento="Esporte" />
-                <CardEventos iconCard={require('../images/icons/estrelaEvento.png')} imagem={require('../images/feedDA.png')} titulo='INTERFATEC: JOGO DE FUTSAL' inscritos='30' endereco='R. XXXXXXXX, n 24' dataEvento='5-9 Ago' tipoEvento="Comum" /></>
+                <><CardEventos  imagem={require('../images/imagemEvento.png')} titulo='INTERFATEC: JOGO DE FUTSAL' inscritos='30' endereco='R. XXXXXXXX, n 24' dataEvento='17 jul' tipoEvento="Esporte" desabilitarBotao={false}/>
+                <CardEventos imagem={require('../images/feedDA.png')} titulo='INTERFATEC: JOGO DE FUTSAL' inscritos='30' endereco='R. XXXXXXXX, n 24' dataEvento='5-9 Ago' tipoEvento="Comum" desabilitarBotao={false}/></>
             )}
              {eventType === "Eventos" && (
-                <><CardEventos iconCard={require('../images/icons/setaDireita.png')} imagem={require('../images/imagemEvento.png')} titulo='INTERFATEC: JOGO DE FUTSAL' inscritos='30' endereco='R. XXXXXXXX, n 24' dataEvento='17 jul' tipoEvento="Esporte" />
-                <CardEventos iconCard={require('../images/icons/estrelaEvento.png')} imagem={require('../images/feedDA.png')} titulo='INTERFATEC: JOGO DE FUTSAL' inscritos='30' endereco='R. XXXXXXXX, n 24' dataEvento='5-9 Ago' tipoEvento="Comum" /></>
+                <><CardEventos  imagem={require('../images/imagemEvento.png')} titulo='INTERFATEC: JOGO DE FUTSAL' inscritos='30' endereco='R. XXXXXXXX, n 24' dataEvento='17 jul' tipoEvento="Esporte" desabilitarBotao={false}/>
+                <CardEventos imagem={require('../images/feedDA.png')} titulo='INTERFATEC: JOGO DE FUTSAL' inscritos='30' endereco='R. XXXXXXXX, n 24' dataEvento='5-9 Ago' tipoEvento="Comum" desabilitarBotao={false}/></>
             )}
              {eventType === "Meus eventos" && (
-                <><CardEventos iconCard={require('../images/icons/setaDireita.png')} imagem={require('../images/imagemEvento.png')} titulo='INTERFATEC: JOGO DE FUTSAL' inscritos='30' endereco='R. XXXXXXXX, n 24' dataEvento='17 jul' tipoEvento="Esporte" />
-                <CardEventos iconCard={require('../images/icons/estrelaEvento.png')} imagem={require('../images/feedDA.png')} titulo='INTERFATEC: JOGO DE FUTSAL' inscritos='30' endereco='R. XXXXXXXX, n 24' dataEvento='5-9 Ago' tipoEvento="Comum" /></>
+                <><CardEventos imagem={require('../images/imagemEvento.png')} titulo='INTERFATEC: JOGO DE FUTSAL' inscritos='30' endereco='R. XXXXXXXX, n 24' dataEvento='17 jul' tipoEvento="Esporte" desabilitarBotao={false}/>
+                <CardEventos imagem={require('../images/feedDA.png')} titulo='INTERFATEC: JOGO DE FUTSAL' inscritos='30' endereco='R. XXXXXXXX, n 24' dataEvento='5-9 Ago' tipoEvento="Comum" desabilitarBotao={false} /></>
             )}
                   
       </View>
@@ -216,7 +217,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1, 
         backgroundColor: 'white', 
-        alignItems: 'center'   
+        alignItems: 'center',
+        paddingBottom: 30  
     },
     header: {
         backgroundColor: '#5D17EB', 
