@@ -6,6 +6,7 @@ import ContactUsDA from '../views/ContactUs';
 import Membros from './MembrosDA';
 import Informations from './Informations';
 import { useNavigation } from '@react-navigation/native';
+import { Icon } from '@rneui/themed';
 
 const Tab = createMaterialTopTabNavigator();
 const Stack = createStackNavigator();
@@ -76,7 +77,7 @@ const DA = () => {
     <View style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity style={styles.iconButton} onPress={() => navigation.goBack()}>
-          <Image source={require('../images/voltar.png')} style={styles.arrowIcon} />
+        <Icon name='arrowleft' type='ant-design' color={'#5D17EB'} size={27}/>
         </TouchableOpacity>
       </View>
 
