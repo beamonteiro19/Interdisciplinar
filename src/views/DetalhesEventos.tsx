@@ -6,6 +6,7 @@ import { TitleGrande,  } from "../styles/styled";
 import { useRoute } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
 import { CardEventos } from "./Eventos";
+import { Icon } from "@rneui/themed";
 
 const DetalhesEventos = () => {
     const [visible, setVisible] = useState(false);
@@ -26,7 +27,7 @@ const DetalhesEventos = () => {
             <View style={{height: '93%'}}>
                 <View>
                     <TouchableOpacity style={{position: 'absolute', zIndex: 2, top: 10, left: 10}} onPress={() => navigation.goBack()}>
-                    <Image source={require('../images/icons/setaEsquerda.png')} />
+                    <Icon name='arrowleft' type='ant-design' color={'#5D17EB'} size={27}/>
                     </TouchableOpacity>
             
             {/* imagens do evento */}
@@ -58,7 +59,7 @@ const DetalhesEventos = () => {
                
                <View style={styles.containerData}>
                <View style={styles.fundoCalendario}>
-                <Image source={require('../images/icons/calendario.png')} style={styles.icon}/>
+               <Icon name="date" type="fontisto" color={'black'} size={18} style={styles.icon}/>
                </View>
 
               {/* detalhes da data */}
@@ -71,7 +72,7 @@ const DetalhesEventos = () => {
                </View>
                <View style={styles.containerData}>
                <View style={styles.fundoCalendario}>
-               <Image source={require('../images/icons/localizacaoEvento.png')}/>
+               <Icon name='location-pin' type='entypo' size={30}/>
                </View>
                <View>
 
