@@ -15,7 +15,6 @@ import Sports from './src/views/Sports';
 import ContactUs from './src/views/ContactUs';
 import Details from './src/views/Details';
 import Gallery from './src/views/Gallery';
-import Notifications from './src/views/Notifications';
 import Eventos from './src/views/Eventos';
 import DetalhesEventos from './src/views/DetalhesEventos';
 import FormEvento from './src/views/FormEvento';
@@ -92,11 +91,6 @@ function App() {
         <Stack.Screen 
           name="Gallery" 
           component={Gallery} 
-          options={{ headerShown: false }} 
-        />
-        <Stack.Screen 
-          name="Notifications" 
-          component={Notifications} 
           options={{ headerShown: false }} 
         />
         <Stack.Screen 
