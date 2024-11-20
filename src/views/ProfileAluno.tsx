@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { View, StyleSheet, Text, Image, TouchableOpacity} from "react-native";
 import { useNavigation } from '@react-navigation/native';
-import { Overlay, Button } from '@rneui/themed'
+import { Overlay, Button, Icon } from '@rneui/themed'
 
 export const ItensMenuPerfil = () => {
     const [visibleOverlay, setVisibleOverlay] = useState(null); 
@@ -89,15 +89,15 @@ const ProfileAluno = () => {
                 <View style={styles.containerHeader}>
                 <Text style={styles.headerText}>USER_484165</Text>
                 <TouchableOpacity onPress={mostrarMenu}>
-                <Image source={require('../images/icons/sairConta.png')} style={styles.iconSair}/>
+                <Icon name="log-out" type="feather" size={30} color={'white'}/>
                 </TouchableOpacity>
                 </View>
             </View>
             <View style={styles.itensPerfil}>
                 <View style={styles.containerTopo}>
             <Image source={require('../images/icons/perfilAluno.png')} style={styles.perfil}/>
-            <TouchableOpacity onPress={() => navigation.navigate("EditPerfilALuno")}>
-            <Image source={require('../images/icons/editarPerfil.png')} style={styles.iconEditar}/>
+            <TouchableOpacity onPress={() => navigation.navigate("EditPerfilALuno")} style={styles.iconEditar}>
+                <Icon name="user-edit" type="font-awesome-5" color={'#5D17EB'} />
             </TouchableOpacity>
             </View>
       
@@ -108,7 +108,7 @@ const ProfileAluno = () => {
       )}
       
             <Text style={styles.textUser}>USER_484165</Text>
-            <Image source={require('../images/icons/calendarioPerfil.png')} style={styles.iconCalendar}/>
+            <Icon name="date" type="fontisto" color={'#5D17EB'} size={40} style={styles.iconCalendar}/>
                 
             </View>
             <View style={styles.containerButton}>
@@ -165,9 +165,7 @@ const styles = StyleSheet.create({
         marginTop: 30, 
     },
     iconEditar: {
-        height: 25,
-        width: 25,
-        left: 110
+       left: 100,
     },
     textUser: {
         fontSize: 15,
@@ -176,8 +174,6 @@ const styles = StyleSheet.create({
         marginTop: 20
     },
     iconCalendar: {
-        width: 40,
-        height: 40,
         alignSelf: 'center',
         marginTop: 30
     },
