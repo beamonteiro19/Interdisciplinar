@@ -10,48 +10,143 @@ import CanetaUsuarioIcon from '../images/icons/caneta-do-usuario.png';
 import MenuOptionsIcon from '../images/icons/menuOptions.png';
 import ProfileIcon from '../images/icons/perfilHome.png';
 import ProfileIconPost from '../images/icons/perfil.png';
+import { Overlay } from '@rneui/themed';
+import { Button } from "@rneui/themed";
 
-export const ItensMenu = () => {
+export const MenuPost = ({ closeMenu, setDeleteModalVisible }: { closeMenu: () => void; setDeleteModalVisible: React.Dispatch<React.SetStateAction<boolean>> }) => {
   const navigation = useNavigation();
 
-  //const navigateToEvents = (type: string) => {
-  // navigation.navigate('Eventos', { eventType: type });
-  // };
   return (
-    <View style={{ backgroundColor: '#5D17EB', borderRadius: 10, alignItems: 'center', justifyContent: 'space-evenly', width: 174, height: 130 }}>
-      <TouchableOpacity onPress={() => navigation.navigate('EditarEvento')} style={{ width: '100%', alignItems: 'center', borderBottomColor: 'white', borderBottomWidth: 2, height: 54, justifyContent: 'center' }}>
-        <Text style={{ fontSize: 22, textAlign: 'center', color: 'white', fontFamily: 'Bryndan Write_fix' }}>Editar</Text>
+    <View
+      style={{
+        backgroundColor: '#5D17EB',
+        borderRadius: 10,
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
+        width: 174,
+        height: 130,
+      }}
+    >
+      <TouchableOpacity
+        onPress={() => {
+          closeMenu();
+          navigation.navigate('EditarEvento');
+        }}
+        style={{
+          width: '100%',
+          alignItems: 'center',
+          borderBottomColor: 'white',
+          borderBottomWidth: 2,
+          height: 54,
+          justifyContent: 'center',
+        }}
+      >
+        <Text
+          style={{
+            fontSize: 22,
+            textAlign: 'center',
+            color: 'white',
+            fontFamily: 'Bryndan Write_fix',
+          }}
+        >
+          Editar
+        </Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("Meus eventos")} style={{ width: '100%', alignItems: 'center', height: 54, justifyContent: 'center' }}>
-        <Text style={{ fontSize: 22, textAlign: 'center', color: 'white', fontFamily: 'Bryndan Write_fix' }}>Excluir</Text>
+      <TouchableOpacity
+        onPress={() => {
+          closeMenu();
+          setDeleteModalVisible(true); // Abre o modal de exclusão
+        }}
+        style={{ width: '100%', alignItems: 'center', height: 54, justifyContent: 'center' }}
+      >
+        <Text
+          style={{
+            fontSize: 22,
+            textAlign: 'center',
+            color: 'white',
+            fontFamily: 'Bryndan Write_fix',
+          }}
+        >
+          Excluir
+        </Text>
       </TouchableOpacity>
-    </View>
-  )
-}
+
+    </View>  
+  );
+};
+
+export const MenuExit = ({ closeMenu, setExitModalVisible }: { closeMenu: () => void; setExitModalVisible: React.Dispatch<React.SetStateAction<boolean>> }) => {
+  const navigation = useNavigation();
+
+  return (
+    <View
+      style={{
+        backgroundColor: '#5D17EB',
+        borderRadius: 10,
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
+        width: 174,
+        height: 130,
+      }}
+    >
+      <TouchableOpacity
+        onPress={() => {
+          closeMenu();
+          setExitModalVisible(true); // Abre o modal de sair da conta
+        }}
+        style={{ width: '100%', alignItems: 'center', height: 54, justifyContent: 'center' }}
+      >
+        <Text
+          style={{
+            fontSize: 22,
+            textAlign: 'center',
+            color: 'white',
+            fontFamily: 'Bryndan Write_fix',
+          }}
+        >
+          Sair da conta
+        </Text>
+      </TouchableOpacity>
+
+    </View>  
+  );
+};
 
 const Profile = () => {
   const navigation = useNavigation();
   const [chatVisible, setChatVisible] = useState(false);
   const [sidebarVisible, setSidebarVisible] = useState(false);
-  const [menu, setMenu] = useState(false);
+  const [menuVisible, setMenuVisible] = useState(false);
+  const [isDeleteModalVisible, setDeleteModalVisible] = useState(false);
+  const [isExitModalVisible, setExitModalVisible] = useState(false);
 
-  function mostrarMenu() {
-    setMenu(!menu);
-  }
+  const toggleChatModal = () => {
+    setMenuVisible(false); // Fecha o menu ao abrir o chat
+    setChatVisible(!chatVisible);
+  };
+
+  const toggleSidebar = () => {
+    setMenuVisible(false); // Fecha o menu ao abrir a sidebar
+    setSidebarVisible(!sidebarVisible);
+  };
+
+  const toggleMenu = () => {
+    setMenuVisible(!menuVisible);
+  };
 
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity style={styles.profileContainer}>
+        <TouchableOpacity onPress={() => navigation.navigate('FormEvento')} style={styles.profileContainer}>
           <View style={styles.profileIconContainer}>
             <Image source={ProfileIcon} style={styles.profileIcon} />
           </View>
-          <Text style={styles.profileText}>Usuário</Text>
+          <Text style={styles.profileText}>USER_484165</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('Calendar')}>
           <Image source={CalendarIcon} style={styles.calendarIcon} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('Exit')}>
+        <TouchableOpacity onPress={() => setExitModalVisible(true)}>
           <Image source={ExitIcon} style={styles.exitIcon} />
         </TouchableOpacity>
       </View>
@@ -65,8 +160,7 @@ const Profile = () => {
         </View>
       </View>
 
-      <Text style={styles.postPrincipal}>Minhas pubicações:</Text>
-
+      <Text style={{marginLeft:15}}>Minhas publicações:</Text>
 
       <View style={styles.postContainer}>
         <View style={styles.postHeader}>
@@ -74,31 +168,170 @@ const Profile = () => {
             <Image source={ProfileIconPost} style={styles.profilePostIcon} />
           </View>
           <Text style={styles.username}>User1246658</Text>
-
-          <TouchableOpacity style={styles.menuContainer} onPress={mostrarMenu}>
-            <Image source={require('../images/icons/menuOptions.png')} style={styles.menu} />
+          <TouchableOpacity style={styles.menuContainer} onPress={toggleMenu}>
+            <Image source={MenuOptionsIcon} style={styles.menu} />
           </TouchableOpacity>
 
-          {menu && (
+          {menuVisible && (
             <View style={styles.menuDropdown}>
-              <ItensMenu />
+              <MenuPost
+                closeMenu={toggleMenu}
+                setDeleteModalVisible={setDeleteModalVisible}
+              />
             </View>
           )}
         </View>
         <Image source={{ uri: 'https://via.placeholder.com/300x200' }} style={styles.postImage} />
         <Text style={styles.postText}>Descrição da publicação...</Text>
         <View style={styles.actionsContainer}>
-          <TouchableOpacity onPress={() => setChatVisible(true)}>
+          <TouchableOpacity onPress={toggleChatModal}>
             <Image source={ChatIcon} style={styles.actionIcon} />
           </TouchableOpacity>
         </View>
       </View>
 
-
-
       {/* Modais */}
-      <ChatModal visible={chatVisible} onClose={() => setChatVisible(false)} />
-      <Sidebar visible={sidebarVisible} onClose={() => setSidebarVisible(false)} />
+      <ChatModal visible={chatVisible} onClose={toggleChatModal} />
+      <Sidebar visible={sidebarVisible} onClose={toggleSidebar} />
+
+      {/* Modal de Sair da conta */}
+<Overlay
+  isVisible={isExitModalVisible}
+  onBackdropPress={() => setExitModalVisible(false)}
+  overlayStyle={{
+    width: '100%',
+    height: '25%',
+    justifyContent: 'flex-start',
+    borderTopRightRadius: 50,
+    borderTopLeftRadius: 50,
+    top: '40%',
+  }}
+>
+  <View
+    style={{
+      width: '100%',
+      height: '90%',
+      justifyContent: 'flex-start',
+      alignItems: 'center',
+      padding: 15,
+      rowGap: 30,
+      top: 10,
+    }}
+  >
+    <Text
+      style={{
+        color: 'black',
+        textAlign: 'center',
+        fontSize: 24,
+        fontFamily: 'Bryndan Write_fix',
+      }}
+    >
+      Deseja sair da conta?
+    </Text>
+    <View style={{ flexDirection: 'row', columnGap: 35 }}>
+      <Button
+        title={'Cancelar'}
+        onPress={() => setExitModalVisible(false)}
+        buttonStyle={{
+          height: 48,
+          borderRadius: 30,
+          width: 140,
+          backgroundColor: 'white',
+          borderColor: '#5D17EB',
+          borderWidth: 1,
+        }}
+        titleStyle={{
+          fontSize: 20,
+          height: 30,
+          color: '#5D17EB',
+        }}
+      />
+      <Button
+        title={'Sair'}
+        buttonStyle={{
+          height: 48,
+          borderRadius: 30,
+          width: 140,
+          backgroundColor: '#5D17EB',
+        }}
+        titleStyle={{
+          fontSize: 20,
+          height: 30,
+        }}
+      />
+    </View>
+  </View>
+</Overlay>
+
+      {/* Modal de Exclusão */}
+<Overlay
+  isVisible={isDeleteModalVisible}
+  onBackdropPress={() => setDeleteModalVisible(false)}
+  overlayStyle={{
+    width: '100%',
+    height: '25%',
+    justifyContent: 'flex-start',
+    borderTopRightRadius: 50,
+    borderTopLeftRadius: 50,
+    top: '40%',
+  }}
+>
+  <View
+    style={{
+      width: '100%',
+      height: '90%',
+      justifyContent: 'flex-start',
+      alignItems: 'center',
+      padding: 15,
+      rowGap: 30,
+      top: 10,
+    }}
+  >
+    <Text
+      style={{
+        color: 'black',
+        textAlign: 'center',
+        fontSize: 24,
+        fontFamily: 'Bryndan Write_fix',
+      }}
+    >
+      Excluir publicação?
+    </Text>
+    <View style={{ flexDirection: 'row', columnGap: 35 }}>
+      <Button
+        title={'Cancelar'}
+        onPress={() => setDeleteModalVisible(false)}
+        buttonStyle={{
+          height: 48,
+          borderRadius: 30,
+          width: 140,
+          backgroundColor: 'white',
+          borderColor: '#5D17EB',
+          borderWidth: 1,
+        }}
+        titleStyle={{
+          fontSize: 20,
+          height: 30,
+          color: '#5D17EB',
+        }}
+      />
+      <Button
+        title={'Excluir'}
+        onPress={() => console.log('Excluído!')}
+        buttonStyle={{
+          height: 48,
+          borderRadius: 30,
+          width: 140,
+          backgroundColor: '#5D17EB',
+        }}
+        titleStyle={{
+          fontSize: 20,
+          height: 30,
+        }}
+      />
+    </View>
+  </View>
+</Overlay>
     </ScrollView>
   );
 };
@@ -124,19 +357,9 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 5,
   },
-  postHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between', // Espaço uniforme entre itens
-    marginBottom: 5,
-  },
   profileIcon: {
     width: 30,
     height: 30,
-  },
-  profilePostIcon: {
-    width: 14,
-    height: 14,
   },
   profileText: {
     color: '#FFF',
@@ -144,13 +367,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginLeft: 8,
   },
-  menu: {
-    alignSelf: 'flex-end',
-    marginTop: 10
-  },
   menuContainer: {
-    alignSelf: 'center', // Centraliza o botão do menu na mesma linha
-    marginLeft: 'auto',  // Empurra para o final do container
+    alignSelf: 'center',
+    marginLeft: 'auto',
   },
   menuDropdown: {
     marginTop: 10,
@@ -158,8 +377,13 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 5,
     top: 15,
-    elevation: 10,
-    pointerEvents: 'box-none',
+    backgroundColor: '#FFF',
+    borderRadius: 8,
+    padding: 10,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 5,
   },
   postContainer: {
     backgroundColor: '#FFF',
@@ -171,10 +395,11 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     elevation: 2,
   },
-  postPrincipal: {
+  postHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    margin: 10,
+    justifyContent: 'space-between',
+    marginBottom: 5,
   },
   postProfileIconContainer: {
     backgroundColor: '#D9D9D9',
@@ -184,7 +409,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#5D17EB',
   },
-  postProfileIcon: {
+  profilePostIcon: {
     width: 30,
     height: 30,
   },
@@ -212,12 +437,6 @@ const styles = StyleSheet.create({
     height: 30,
     marginRight: 15,
   },
-  favIcon: {
-    width: 30,
-    height: 30,
-    marginRight: 15,
-    marginLeft: 230,
-  },
   exitIcon: {
     width: 30,
     height: 30,
@@ -228,16 +447,20 @@ const styles = StyleSheet.create({
     height: 30,
     tintColor: '#FFF',
   },
-  menuOptionsIcon: {
-    width: 25,
-    height: 6,
-    marginLeft: 140,
-  },
   canetaUsuarioIcon: {
     width: 20,
     height: 20,
-    marginLeft: 140,
   },
+  buttonPresenca:{
+    backgroundColor: 'white',
+    borderRadius: 20,
+    borderColor: '#5D17EB',
+    borderWidth: 1,
+    padding: 3,
+    width: 201,
+    paddingHorizontal: 5,
+    height: 45
+   },
 });
 
 export default Profile;
