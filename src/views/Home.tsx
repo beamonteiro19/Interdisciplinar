@@ -10,7 +10,6 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import ChatModal from '../views/ChatModal';
 import Sidebar from '../views/Sidebar';
-import ProfileIcon from '../images/icons/perfilHome.png';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Home = () => {
@@ -32,7 +31,6 @@ const Home = () => {
             name="notifications-outline"
             size={30}
             color="#FFF"
-            style={styles.icon}
           />
         </TouchableOpacity>
       </View>
