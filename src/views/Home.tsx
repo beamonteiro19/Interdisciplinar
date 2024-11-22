@@ -10,13 +10,8 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import ChatModal from '../views/ChatModal';
 import Sidebar from '../views/Sidebar';
-import HeartIcon from '../images/icons/coracao.png';
-import ChatIcon from '../images/icons/comentario.png';
-import FavIcon from '../images/icons/estrela.png';
-import NotificationIcon from '../images/icons/sino.png';
-import MenuIcon from '../images/icons/menu-hamburguer.png';
 import ProfileIcon from '../images/icons/perfilHome.png';
-import ProfileIconPost from '../images/icons/perfil.png';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Home = () => {
   const navigation = useNavigation();
@@ -28,12 +23,17 @@ const Home = () => {
       <View style={styles.header}>
         <TouchableOpacity style={styles.profileContainer}>
           <View style={styles.profileIconContainer}>
-            <Image source={ProfileIcon} style={styles.profileIcon} />
+            <Ionicons name="person-outline" size={30} color="#000000" />
           </View>
           <Text style={styles.profileText}>D.A FATEC JD</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('Notifications')}>
-          <Image source={NotificationIcon} style={styles.notificationIcon} />
+          <Ionicons
+            name="notifications-outline"
+            size={30}
+            color="#FFF"
+            style={styles.icon}
+          />
         </TouchableOpacity>
       </View>
 
@@ -41,14 +41,19 @@ const Home = () => {
         <TouchableOpacity
           style={styles.menuButton}
           onPress={() => setSidebarVisible(true)}>
-          <Image source={MenuIcon} style={styles.actionIcon} />
+          <Ionicons
+            name="menu-outline"
+            size={30}
+            color="#FFF"
+            style={styles.menuIcon}
+          />
         </TouchableOpacity>
       </View>
 
       <View style={styles.postContainer}>
         <View style={styles.postHeader}>
           <View style={styles.postProfileIconContainer}>
-            <Image source={ProfileIconPost} style={styles.profilePostIcon} />
+            <Ionicons name="person-outline" size={14} color="#000000" />
           </View>
           <Text style={styles.username}>User1246658</Text>
         </View>
@@ -58,14 +63,12 @@ const Home = () => {
         />
         <Text style={styles.postText}>Evento da InterFatecs 2024...</Text>
         <View style={styles.actionsContainer}>
-          <TouchableOpacity>
-            <Image source={HeartIcon} style={styles.actionIcon} />
-          </TouchableOpacity>
           <TouchableOpacity onPress={() => setChatVisible(true)}>
-            <Image source={ChatIcon} style={styles.actionIcon} />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Image source={FavIcon} style={styles.favIcon} />
+            <Ionicons
+              name="chatbubble-ellipses-outline"
+              size={30}
+              color="#5D17EB"
+            />
           </TouchableOpacity>
         </View>
       </View>
@@ -100,14 +103,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#D9D9D9',
     borderRadius: 20,
     padding: 5,
-  },
-  profileIcon: {
-    width: 30,
-    height: 30,
-  },
-  profilePostIcon: {
-    width: 14,
-    height: 14,
   },
   profileText: {
     color: '#FFF',
@@ -146,10 +141,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#5D17EB',
   },
-  postProfileIcon: {
-    width: 30,
-    height: 30,
-  },
   username: {
     color: 'black',
     fontFamily: 'Bryndan Write_fix',
@@ -170,21 +161,11 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     paddingHorizontal: 10,
   },
-  actionIcon: {
+  menuIcon: {
     width: 30,
     height: 30,
     marginRight: 15,
-  },
-  favIcon: {
-    width: 30,
-    height: 30,
-    marginRight: 15,
-    marginLeft: 230,
-  },
-  notificationIcon: {
-    width: 30,
-    height: 30,
-    tintColor: '#FFF',
+    color: '#5D17EB',
   },
 });
 
