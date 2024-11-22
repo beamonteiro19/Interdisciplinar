@@ -1,53 +1,38 @@
 import React from 'react';
-import { Image } from 'react-native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Home from '../views/Home';
 import Calendar from '../views/Calendar';
 import Profile from '../views/Profile';
 import Publish from '../views/Publish';
-
-//ícones personalizados
-import HomeIcon from '../images/icons/casa.png';
-import CalendarIcon from '../images/icons/calendario.png';
-import ProfileIcon from '../images/icons/perfil.png';
-import MegaphoneIcon from '../images/icons/megafone.png';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();
 
 const CustomTabNavigator = () => {
   return (
     <Tab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ color, size }) => {
-          let iconSource;
+      screenOptions={({route}) => ({
+        tabBarIcon: ({focused, color, size}) => {
+          let iconName;
           if (route.name === 'Início') {
-            iconSource = HomeIcon;
+            iconName = focused ? 'home' : 'home-outline';
           } else if (route.name === 'Calendário') {
-            iconSource = CalendarIcon;
+            iconName = focused ? 'calendar' : 'calendar-outline';
           } else if (route.name === 'Publicar') {
-            iconSource = MegaphoneIcon;
+            iconName = focused ? 'megaphone' : 'megaphone-outline';
+          } else if (route.name === 'Perfil') {
+            iconName = focused ? 'person' : 'person-outline';
           }
-          else if (route.name === 'Perfil') {
-            iconSource = ProfileIcon;
-          }
-
-          return (
-            <Image
-              source={iconSource}
-              style={{
-                width: 30,
-                height: 30,
-              }}
-              resizeMode="contain"
-            />
-          );
+          return <Ionicons name={iconName} size={size} color={color} />;
         },
         tabBarActiveTintColor: '#5D17EB',
-        tabBarInactiveTintColor: 'gray',
+        tabBarInactiveTintColor: '#5D17EB',
         headerShown: false,
-        tabBarStyle: { backgroundColor: '#F0F0F0' },
-      })}
-    >
+        tabBarLabelStyle: {
+          fontFamily: 'Bryndan Write_fix',
+          fontSize: 12,
+        },
+      })}>
       <Tab.Screen name="Início" component={Home} />
       <Tab.Screen name="Calendário" component={Calendar} />
       <Tab.Screen name="Publicar" component={Publish} />
