@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
 export const Documents = () => {
@@ -24,6 +24,7 @@ const Informations = () => {
   const navigation = useNavigation();
   
   return (
+    <ScrollView>
     <View style={{ flex: 1, alignItems: 'center', padding: 20, backgroundColor: 'white', }}>
       <View style={styles.gridContainer}>
        
@@ -59,6 +60,7 @@ const Informations = () => {
       </View>
 
     </View>
+    </ScrollView>
   );
 };
 
@@ -69,7 +71,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 20,
     backgroundColor: 'white',
-    gap: 30
+    gap: 15
   },
   sportContainer: {
     alignItems: 'center',
