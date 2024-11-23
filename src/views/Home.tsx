@@ -50,7 +50,7 @@ const Home = () => {
           <Text style={styles.username}>User1246658</Text>
         </View>
         <Image
-          source={{uri: 'https://via.placeholder.com/300x200'}}
+        source={require('../images/feed1.png')}
           style={styles.postImage}
         />
         <Text style={styles.postText}>Evento da InterFatecs 2024...</Text>
