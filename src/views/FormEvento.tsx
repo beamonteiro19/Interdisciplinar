@@ -1,12 +1,13 @@
 import React, {useState} from "react";
 import { useNavigation } from '@react-navigation/native';
-import { View, StyleSheet, Image, TouchableOpacity, ScrollView} from 'react-native'
+import { View, StyleSheet, Image, TouchableOpacity, ScrollView, Alert} from 'react-native'
 import { TitlePequeno, InputFormEventos, TitleGrande, FundoPickerEventos } from "../styles/styled";
 import {Picker} from '@react-native-picker/picker';
 import {ThemeProvider, Button, Overlay } from "@rneui/themed";
 import theme from "../styles/theme";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Icon } from '@rneui/themed';
+import {launchImageLibrary} from 'react-native-image-picker';
 
 
 export const ConjuntoFotos = () => {
@@ -24,6 +25,7 @@ const FormEvento = () => {
   const [selecioneCategoria, setSelecioneCategoria] = useState();
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null); // Novo estado para armazenar a data selecionada
+  const [selectedImage, setSelectedImage] = useState(null);
   const navigation = useNavigation();
 
   const showDatePicker = () => {
@@ -43,6 +45,29 @@ const FormEvento = () => {
   const toggleOverlay = () => {
     setVisible(!visible);
   };
+
+  const handleImagePicker = () => {
+    const options = {
+      mediaType: 'photo',
+      maxWidth: 800,
+      maxHeight: 800,
+      quality: 0.8,
+    };
+
+    launchImageLibrary(options, response => {
+      if (response.didCancel) {
+        console.log('Seleção de imagem cancelada');
+      } else if (response.errorCode) {
+        Alert.alert(
+          'Erro',
+          response.errorMessage || 'Ocorreu um erro ao acessar a galeria',
+        );
+      } else if (response.assets && response.assets.length > 0) {
+        const selectedImageUri = response.assets[0].uri;
+        setSelectedImage(selectedImageUri);
+      }
+    });
+  };
     
     return(
         <ScrollView style={{flex: 1, backgroundColor: 'white', paddingBottom: 35}}>
@@ -53,7 +78,7 @@ const FormEvento = () => {
             <View style={styles.containerTopo}>
             <TitlePequeno style={{color: '#5D17EB', textAlign: 'center'}}>CRIAR NOVO EVENTO</TitlePequeno>
             <View style={styles.containerFotos}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={handleImagePicker}>
                 <Image source={require('../images/icons/quadradoMais.png')}/>
                 </TouchableOpacity>
                 <TitlePequeno style={styles.corTexto}>Adicionar fotos</TitlePequeno>
