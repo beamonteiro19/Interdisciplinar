@@ -108,7 +108,7 @@ const ProfileAluno = () => {
       )}
       
             <Text style={styles.textUser}>USER_484165</Text>
-            <Icon name="date" type="fontisto" color={'#5D17EB'} size={40} style={styles.iconCalendar}/>
+            <Icon name="calendar" type="ionicon" color={'#5D17EB'} size={40} style={styles.iconCalendar}/>
                 
             </View>
             <View style={styles.containerButton}>
