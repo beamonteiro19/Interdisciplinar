@@ -1,35 +1,32 @@
 import React, { memo } from 'react';
-import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import BellIcon from '../images/icons/notificacao.png';
-import ClockIcon from '../images/icons/alarme.png';
-import CancelIcon from '../images/icons/cancelar.png';
-import BackIcon from '../images/icons/setaEsquerda.png'; 
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Notifications = memo(() => {
   const navigation = useNavigation();
 
   const notifications = [
-    { id: 1, icon: ClockIcon, text: 'O evento "Interfatec - jogo de futsal" que você declarou interesse está chegando.' },
-    { id: 2, icon: CancelIcon, text: 'O evento "Interfatec - jogo de futsal" que você declarou interesse foi cancelado.' },
-    { id: 3, icon: BellIcon, text: 'Novo evento publicado na aba "EVENTOS".' },
-    { id: 4, icon: ClockIcon, text: 'O evento "Interfatec - jogo de futsal" que você declarou interesse está chegando.' },
-    { id: 5, icon: CancelIcon, text: 'O evento "Interfatec - jogo de futsal" que você declarou interesse foi cancelado.' },
-    { id: 6, icon: BellIcon, text: 'Novo evento publicado na aba "EVENTOS".' },
+    { id: 1, icon: 'alarm-outline', text: 'O evento "Interfatec - jogo de futsal" que você declarou interesse está chegando.' },
+    { id: 2, icon: 'close-circle-outline', text: 'O evento "Interfatec - jogo de futsal" que você declarou interesse foi cancelado.' },
+    { id: 3, icon: 'notifications-outline', text: 'Novo evento publicado na aba "EVENTOS".' },
+    { id: 4, icon: 'alarm-outline', text: 'O evento "Interfatec - jogo de futsal" que você declarou interesse está chegando.' },
+    { id: 5, icon: 'close-circle-outline', text: 'O evento "Interfatec - jogo de futsal" que você declarou interesse foi cancelado.' },
+    { id: 6, icon: 'notifications-outline', text: 'Novo evento publicado na aba "EVENTOS".' },
   ];
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-          <Image source={BackIcon} style={styles.backIcon} />
+          <Ionicons name="arrow-back-outline" size={30} color="#5D17EB" />
         </TouchableOpacity>
       </View>
 
       <ScrollView style={styles.notificationsList}>
         {notifications.map((notification) => (
           <View key={notification.id} style={styles.notificationItem}>
-            <Image source={notification.icon} style={styles.notificationIcon} />
+            <Ionicons name={notification.icon} size={30} color="#5D17EB" style={styles.notificationIcon} />
             <Text style={styles.notificationText}>{notification.text}</Text>
           </View>
         ))}
@@ -53,17 +50,6 @@ const styles = StyleSheet.create({
   backButton: {
     marginRight: 10,
   },
-  backIcon: {
-    width: 30,
-    height: 30,
-  },
-  headerText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#5D17EB',
-    textAlign: 'center',
-    flex: 1,
-  },
   notificationsList: {
     paddingHorizontal: 15,
   },
@@ -77,8 +63,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   notificationIcon: {
-    width: 30,
-    height: 30,
     marginRight: 10,
   },
   notificationText: {
