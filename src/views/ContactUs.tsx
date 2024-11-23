@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TextInput, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const ContactUs = () => {
   const navigation = useNavigation();
@@ -12,7 +13,7 @@ const ContactUs = () => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={handleGoBack} style={styles.backButton}>
-        <Image source={require('../images/voltar.png')} style={styles.backIcon} />
+      <Ionicons name="arrow-back" size={30} color="#000" />
       </TouchableOpacity>
       <Text style={styles.title}>FALE CONOSCO</Text>
       <Image source={require('../images/AtleticaImg.png')} style={styles.logo} />
@@ -31,19 +32,20 @@ const ContactUs = () => {
       <View style={styles.contactOptions}>
         <TouchableOpacity style={styles.contactButton}>
           <View style={styles.iconContainer}>
-            <Image source={require('../images/instagram.png')} style={styles.icon} />
+          <Ionicons name="logo-instagram" size={30} color="#F8E40B" /> F8E40B
+
           </View>
           <Text style={styles.contactText}>INSTAGRAM</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.contactButton}>
           <View style={styles.iconContainer}>
-            <Image source={require('../images/email.png')} style={styles.icon} />
+          <Ionicons name="mail" size={30} color="#F8E40B" />
           </View>
           <Text style={styles.contactText}>EMAIL</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.contactButton}>
           <View style={styles.iconContainer}>
-            <Image source={require('../images/whatsapp.png')} style={styles.icon} />
+            <Ionicons name="logo-whatsapp" size={30} color="#F8E40B" />
           </View>
           <Text style={styles.contactText}>GRUPO NO WHATSAPP</Text>
         </TouchableOpacity>
@@ -70,7 +72,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontFamily: 'Bryndan Write_fix',
     textAlign: 'center',
     marginTop: 40,
   },
@@ -94,12 +96,13 @@ const styles = StyleSheet.create({
     color: '#F8E40B',
     fontSize: 14,
     textAlign: 'center',
+    fontFamily: 'Bryndan Write_fix',
     width: '100%',
   },
   infoText: {
+    fontFamily: 'Bryndan Write_fix',
     marginTop: 20,
     fontSize: 16,
-    fontWeight: 'bold',
     textAlign: 'left',
     alignSelf: 'flex-start',
   },
@@ -126,8 +129,7 @@ const styles = StyleSheet.create({
   },
   contactText: {
     fontSize: 16,
-    color: 'black',
-    fontWeight: 'bold',
+    fontFamily: 'Bryndan Write_fix',
   },
 });
 

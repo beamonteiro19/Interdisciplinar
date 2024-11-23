@@ -5,8 +5,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Team from '../views/Team';
 import Sports from '../views/Sports';
 import ContactUs from '../views/ContactUs';
-import Gallery from '../views/Gallery'; 
 import { useNavigation } from '@react-navigation/native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Tab = createMaterialTopTabNavigator();
 const Stack = createStackNavigator();
@@ -45,7 +45,6 @@ const AthleticTabs = () => {
           ),
         }}
       />
-     
       <Tab.Screen
         name="Fale Conosco"
         component={() => null}
@@ -77,10 +76,10 @@ const Athletic = () => {
     <View style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity style={styles.iconButton} onPress={() => navigation.goBack()}>
-          <Image source={require('../images/voltar.png')} style={styles.arrowIcon} />
+          <Ionicons name="arrow-back" size={30} color="#000" />
         </TouchableOpacity>
         <TouchableOpacity style={styles.iconButton} onPress={() => navigation.navigate('Gallery')}>
-          <Image source={require('../images/galeria.png')} style={styles.galleryIcon} />
+          <Ionicons name="image-outline" size={30} color="#000" />
         </TouchableOpacity>
       </View>
 
@@ -144,6 +143,7 @@ const styles = StyleSheet.create({
   tabBarLabel: {
     fontSize: 14,
     fontWeight: 'bold',
+    fontFamily: 'Bryndan Write_fix', // Aplicando a fonte aqui
   },
   tabBarIndicator: {
     backgroundColor: '#D52527',
@@ -164,14 +164,12 @@ const styles = StyleSheet.create({
   },
   tabText: {
     color: 'black',
-    fontWeight: 'bold',
     fontSize: 14,
+    fontFamily: 'Bryndan Write_fix',
   },
   tabTextFocused: {
     color: '#D52527',
   },
-
-  
 });
 
 export default AthleticStack;

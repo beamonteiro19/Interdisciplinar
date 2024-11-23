@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
 
 const Sports = () => {
   const navigation = useNavigation();
@@ -27,7 +29,7 @@ const Sports = () => {
 
   return (
     <View style={{ flex: 1, alignItems: 'center', padding: 20 }}>
-      <Text style={{ fontSize: 18, fontWeight: 'bold' }}>CONHEÇA NOSSAS MODALIDADES</Text>
+      <Text style={{ fontSize: 18, fontFamily: 'Bryndan Write_fix', }}>CONHEÇA NOSSAS MODALIDADES</Text>
       <View style={styles.gridContainer}>
         {sportsData.map((sport) => (
           <TouchableOpacity

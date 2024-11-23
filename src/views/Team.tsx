@@ -1,5 +1,7 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
 
 const Team = () => {
   return (
@@ -11,13 +13,13 @@ const Team = () => {
       <ScrollView contentContainerStyle={styles.scrollContainer}>   
         <View style={styles.memberContainer}>
           <View style={styles.iconContainer}>
-            <Image source={require('../images/perfil.png')} style={styles.icon} />
+          <Ionicons name="person-outline" size={80} color="#000000" />
           </View>
           <View style={styles.textContainer}>
             <Text style={styles.nameText}>Nome: Maria Aparecida</Text>
             <Text style={styles.roleText}>Cargo: Presidente</Text>
           </View>
-        </View>         
+        </View>
       </ScrollView>
     </View>
   );
@@ -41,6 +43,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: '#D52527',
+    fontFamily: 'Bryndan Write_fix',
   },
   scrollContainer: {
     alignItems: 'center', 
@@ -70,11 +73,12 @@ const styles = StyleSheet.create({
   },
   nameText: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontFamily: 'Bryndan Write_fix',
   },
   roleText: {
     fontSize: 14,
     color: '#555',
+    fontFamily: 'Bryndan Write_fix',
   },
 });
 
