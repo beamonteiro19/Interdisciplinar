@@ -9,13 +9,19 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Icon } from '@rneui/themed';
 import {launchImageLibrary} from 'react-native-image-picker';
 
-
-export const ConjuntoFotos = () => {
+interface props {
+  imageSelected: undefined
+}
+export const ConjuntoFotos = ({imageSelected}:props) => {
     
     return(
         <View style={{height: 45, width: 45, alignItems: 'center', justifyContent: 'center', 
-        backgroundColor: '#ECE9E9', borderWidth: 2, borderColor: '#999393',borderStyle: 'dashed',borderRadius: 5,}}>
-            <Image source={require('../images/icons/mais.png')} />
+        backgroundColor: '#ECE9E9', marginBottom: 8, borderWidth: 2, borderColor: '#999393',borderStyle: 'dashed',borderRadius: 5,}}>
+            {imageSelected ? (
+        <Image source={imageSelected} style={{height: '100%', width: '100%', borderRadius: 5}} />
+      ) : (
+        <Image source={require('../images/icons/mais.png')} />
+      )}
         </View>
 
     )
@@ -25,7 +31,7 @@ const FormEvento = () => {
   const [selecioneCategoria, setSelecioneCategoria] = useState();
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null); // Novo estado para armazenar a data selecionada
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImages, setSelectedImages] = useState([]);
   const navigation = useNavigation();
 
   const showDatePicker = () => {
@@ -53,7 +59,7 @@ const FormEvento = () => {
       maxHeight: 800,
       quality: 0.8,
     };
-
+  
     launchImageLibrary(options, response => {
       if (response.didCancel) {
         console.log('Seleção de imagem cancelada');
@@ -64,7 +70,7 @@ const FormEvento = () => {
         );
       } else if (response.assets && response.assets.length > 0) {
         const selectedImageUri = response.assets[0].uri;
-        setSelectedImage(selectedImageUri);
+        setSelectedImages(prevImages => [...prevImages, selectedImageUri]); // Adiciona ao array
       }
     });
   };
@@ -84,11 +90,17 @@ const FormEvento = () => {
                 <TitlePequeno style={styles.corTexto}>Adicionar fotos</TitlePequeno>
             </View>
             <View style={{flexDirection: 'row', width: '95%', justifyContent: 'space-between'}}>
-            <ConjuntoFotos />
-            <ConjuntoFotos />
-            <ConjuntoFotos />
-            <ConjuntoFotos />
-            <ConjuntoFotos />
+            
+            <View style={{flexDirection: 'row', width: '95%', justifyContent: 'flex-start', flexWrap: 'wrap', columnGap: 8}}>
+                {selectedImages.map((imageUri, index) => (
+                  <ConjuntoFotos key={index} imageSelected={{uri: imageUri}} />
+                ))}
+                
+                {/* Botão para adicionar nova imagem */}
+                <TouchableOpacity onPress={handleImagePicker}>
+                  <ConjuntoFotos />
+                </TouchableOpacity>
+              </View>
             </View>
             </View>
             
