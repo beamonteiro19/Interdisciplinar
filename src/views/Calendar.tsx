@@ -95,8 +95,8 @@ const Calendario = () => {
       <View style={styles.containerTitle}>
             <Text style={styles.title}>CALENDARIO</Text>
             </View>
+            <View style={{justifyContent: 'center', alignItems: 'center', }}>
             <View style={styles.containerCalendario}>
-            
               <Calendar 
               headerStyle={{paddingBottom: 10, marginBottom: 10, borderWidth: 2, borderColor: '#5D17EB', borderRadius: 10, backgroundColor: '#ffff'}}
               theme={{
@@ -136,6 +136,7 @@ const Calendario = () => {
                 </View>
                 </TouchableOpacity>
             </View>
+            </View>
             <View style={{width:'90%', marginTop: 30}}>
             <Text style={styles.dataCompleta}>segunda-feira, dia 9 de setembro de 2024:</Text>
             </View>
@@ -148,7 +149,7 @@ const styles = StyleSheet.create({
     container: {
         flex:1, 
         alignItems: 'center',
-        backgroundColor: 'white'
+        backgroundColor: 'white',
     },
     header: {
         flexDirection: 'row',
@@ -192,12 +193,12 @@ const styles = StyleSheet.create({
         fontFamily: 'Sprite Graffiti Regular'
       },
       containerCalendario:{
-        justifyContent: 'center',
-        alignItems: 'center',
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end',
       },
       calendarContent: {
         backgroundColor: 'transparent',
-        width: 370,
+        width: 350
       },
       add: {
         height: 47,
@@ -214,10 +215,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row', 
         width: '50%', 
         alignSelf: 'flex-end', 
-        justifyContent: 'flex-end', 
-        right: 20, 
+        justifyContent: 'flex-end',  
         marginTop: 20,
-        columnGap: 10
+        columnGap: 10, 
       },
       dataAtual: {
         height: 47,
