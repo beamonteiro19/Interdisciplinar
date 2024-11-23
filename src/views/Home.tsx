@@ -19,6 +19,7 @@ const Home = () => {
 
   return (
     <ScrollView style={styles.container}>
+      {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity style={styles.profileContainer}>
           <View style={styles.profileIconContainer}>
@@ -27,31 +28,24 @@ const Home = () => {
           <Text style={styles.profileText}>D.A FATEC JD</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('Notifications')}>
-          <Ionicons
-            name="notifications-outline"
-            size={30}
-            color="#FFF"
-          />
+          <Ionicons name="notifications" size={30} color="#FFFFFF" />
         </TouchableOpacity>
       </View>
 
+      {/* Menu */}
       <View style={styles.menuContainer}>
         <TouchableOpacity
           style={styles.menuButton}
           onPress={() => setSidebarVisible(true)}>
-          <Ionicons
-            name="menu-outline"
-            size={30}
-            color="#FFF"
-            style={styles.menuIcon}
-          />
+          <Ionicons name="menu-outline" size={30} />
         </TouchableOpacity>
       </View>
 
+      {/* Post */}
       <View style={styles.postContainer}>
         <View style={styles.postHeader}>
           <View style={styles.postProfileIconContainer}>
-            <Ionicons name="person-outline" size={14} color="#000000" />
+            <Ionicons name="person-outline" size={18} color="#000000" />
           </View>
           <Text style={styles.username}>User1246658</Text>
         </View>
@@ -62,16 +56,11 @@ const Home = () => {
         <Text style={styles.postText}>Evento da InterFatecs 2024...</Text>
         <View style={styles.actionsContainer}>
           <TouchableOpacity onPress={() => setChatVisible(true)}>
-            <Ionicons
-              name="chatbubble-ellipses-outline"
-              size={30}
-              color="#5D17EB"
-            />
+            <Ionicons name="chatbubble-ellipses-outline" size={25} />
           </TouchableOpacity>
         </View>
       </View>
 
-      {/* Modais */}
       <ChatModal visible={chatVisible} onClose={() => setChatVisible(false)} />
       <Sidebar
         visible={sidebarVisible}
@@ -84,86 +73,89 @@ const Home = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#FAFAFA',
   },
+
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     backgroundColor: '#5D17EB',
     padding: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: '#E5E5E5',
   },
   profileContainer: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   profileIconContainer: {
-    backgroundColor: '#D9D9D9',
-    borderRadius: 20,
-    padding: 5,
+    backgroundColor: '#E5E5E5',
+    borderRadius: 50,
+    width: 40,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   profileText: {
-    color: '#FFF',
-    fontSize: 18,
-    fontFamily: 'Bryndan Write_fix',
+    color: '#FFFFFF',
+    fontSize: 16,
     marginLeft: 8,
+    fontFamily: 'Bryndan Write_fix',
   },
   menuContainer: {
+    padding: 10,
     alignItems: 'flex-start',
-    paddingHorizontal: 15,
-    marginTop: 10,
   },
   menuButton: {
-    padding: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    tintColor: '#5D17EB',
   },
   postContainer: {
-    backgroundColor: '#FFF',
-    borderRadius: 8,
-    padding: 10,
-    margin: 10,
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
-    elevation: 2,
+    backgroundColor: '#FFFFFF',
+    marginVertical: 8,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderColor: '#E5E5E5',
   },
   postHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 5,
+    padding: 10,
+    justifyContent: 'space-between',
   },
   postProfileIconContainer: {
-    backgroundColor: '#D9D9D9',
-    borderRadius: 20,
-    padding: 5,
+    backgroundColor: '#E5E5E5',
+    borderRadius: 50,
+    width: 30,
+    height: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
     marginRight: 8,
-    borderWidth: 1,
-    borderColor: '#5D17EB',
   },
   username: {
-    color: 'black',
+    fontSize: 14,
+    color: '#262626',
     fontFamily: 'Bryndan Write_fix',
   },
   postImage: {
     width: '100%',
-    height: 200,
-    borderRadius: 8,
-    marginBottom: 10,
+    height: 300,
+    backgroundColor: '#F0F0F0',
   },
   postText: {
-    color: '#333',
-    marginBottom: 10,
+    padding: 10,
+    fontSize: 14,
+    color: '#262626',
     fontFamily: 'Bryndan Write_fix',
   },
   actionsContainer: {
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    alignItems: 'center',
     paddingHorizontal: 10,
-  },
-  menuIcon: {
-    width: 30,
-    height: 30,
-    marginRight: 15,
-    color: '#5D17EB',
+    paddingVertical: 5,
+    borderColor: '#E5E5E5',
   },
 });
 
