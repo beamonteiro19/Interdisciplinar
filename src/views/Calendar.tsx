@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView} from 'reac
 import { Icon } from '@rneui/themed';
 import {ContainerJogos} from '../styles/styled';
 import { useNavigation } from '@react-navigation/native';
-
+import { Calendar, DateData } from 'react-native-calendars';
 
 interface props {
     titulo: string;
@@ -62,8 +62,9 @@ export const ItensMenu = () =>{
     )
 }
 
-const Calendar = () => {
+const Calendario = () => {
     const [menu, setMenu] = useState(false);
+    const[day, setDay] = useState<DateData>()
     const navigation = useNavigation();
 
     function mostrarMenu() {
@@ -71,7 +72,7 @@ const Calendar = () => {
   }
     
     return (
-        <ScrollView style={{backgroundColor: 'white'}}>
+        <ScrollView style={{backgroundColor: 'white', paddingBottom: 50}}>
         <View style={styles.container}>
             <View style={styles.header}>
         <TouchableOpacity style={styles.profileContainer}>
@@ -94,33 +95,35 @@ const Calendar = () => {
       <View style={styles.containerTitle}>
             <Text style={styles.title}>CALENDARIO</Text>
             </View>
-            <View style={styles.mesContainer}>
-                <View style={styles.meses}> 
-                    <TouchableOpacity>
-                <Icon name='arrowleft' type='ant-design' color={'#5D17EB'} size={27}/>
-                </TouchableOpacity>
-                <Text style={styles.textMes}>Julho</Text>
-                <TouchableOpacity>
-                <Icon name='arrowright' type='ant-design' color={'#5D17EB'} size={27}/>
-                </TouchableOpacity>
-                </View>
-            </View>
             <View style={styles.containerCalendario}>
-                <View style={styles.dataContainer}>
-                    <Text style={styles.diaSemana}>QUA</Text>
-                    <Text style={styles.diaEvento}>17</Text>
-                </View>
-                <View style={{width: '60%', alignItems: 'flex-end', paddingRight: 3}}>
-                <Text style={styles.mesEvento}>JULHO</Text>
-                <View style={styles.diasCalendarioContainer}>
-                    <View style={styles.containerDia}>
-                <Text style={styles.diaCalendario}>1</Text>
-                <Text style={styles.diaCalendario}>2</Text>
-                </View>
-                </View>
-                </View>
+            
+              <Calendar 
+              headerStyle={{paddingBottom: 10, marginBottom: 10, borderWidth: 2, borderColor: '#5D17EB', borderRadius: 10, backgroundColor: '#ffff'}}
+              theme={{
+                textMonthFontSize: 23,
+                monthTextColor: '#5D17EB',
+                todayTextColor: '#F3C04D',
+                selectedDayBackgroundColor: '#F3C04D',
+                selectedDayTextColor: '#5D17EB',
+                textDayStyle: {color: '#ffff', fontFamily: 'Bryndan Write_fix'},
+                calendarBackground: '#5D17EB',
+                textDisabledColor: '#9F9F9F',
+                textMonthFontFamily: 'Bryndan Write_fix',
+                textDayHeaderFontFamily: 'Bryndan Write_fix',
+                textDayHeaderFontSize: 16,
+                arrowColor: '#5D17EB',
 
+              }}
+              style={styles.calendarContent}
+              onDayPress={setDay}
+              markedDates={day && {
+                [day.dateString]: {selected: true} 
+              }}
+              />
+
+            
             </View>
+            
             <View style={styles.containerAdd}>
                 <View style={styles.dataAtual}>
                 <Text style={{fontSize: 16, color: '#5D17EB', fontFamily: 'Bryndan Write_fix'}}>SEG</Text>
@@ -188,84 +191,13 @@ const styles = StyleSheet.create({
         color: '#5D17EB',
         fontFamily: 'Sprite Graffiti Regular'
       },
-      textMes:{
-        fontSize: 30,
-        color: '#5D17EB',
-        fontFamily: 'Bryndan Write_fix'
-      },
-      mesContainer:{
-        width: '90%',
-        height: 58,
-        borderRadius: 10,
-        borderColor: '#5D17EB',
-        borderWidth: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 15,
-      },
-      meses:{
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        width: '100%'
-      },
       containerCalendario:{
-        width: '90%',
-        height: 214,
-        backgroundColor: '#5D17EB',
-        borderRadius: 10,
-        marginTop: 10,
-         flexDirection: 'row'
-      },
-      dataContainer:{
-        width: 140,
-        height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
       },
-      diaSemana: {
-        fontSize: 64,
-        textAlign: 'center',
-        color: 'white',
-        fontFamily: 'Heading Now Trial 01 Thin',
-        fontWeight: 'semibold'
-      },
-      mesEvento:{
-        fontSize: 36,
-        textAlign: 'right',
-        color: 'white',
-        right: 5,
-        fontFamily: 'Heading Now Trial 01 Thin',
-        fontWeight: 'semibold'
-      },
-      diaEvento: {
-        fontSize: 65,
-        textAlign: 'center',
-        color: 'white',
-        fontFamily: 'Heading Now Trial 01 Thin',
-        fontWeight: 'bold'
-      },
-      diaCalendario:{
-        textAlign: 'center',
-        color: 'white',
-        fontSize: 13,
-        paddingHorizontal: 6,
-        paddingVertical: 4,
-        borderRadius: 3,
-        fontFamily: 'Bryndan Write_fix'
-      },
-      diasCalendarioContainer:{
-        width: 170,
-        alignItems: 'flex-end',
-        justifyContent: 'flex-start',
-        flexDirection: 'row',
-        marginTop: 25,
-      },
-      containerDia:{
-       flexDirection: 'row', 
-       gap: 5,
-       width: '100%',
-       flexWrap: 'wrap',
-       justifyContent: 'flex-start'
+      calendarContent: {
+        backgroundColor: 'transparent',
+        width: 370,
       },
       add: {
         height: 47,
@@ -307,4 +239,4 @@ const styles = StyleSheet.create({
       
 
 })
-export default Calendar;
+export default Calendario;
