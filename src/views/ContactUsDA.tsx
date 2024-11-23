@@ -10,6 +10,7 @@ const ContactUsDA  = () => {
             <Icon name='arrowleft' type='ant-design' color={'#5D17EB'} size={27}/>
                 </TouchableOpacity>
             <Text style={styles.title}>FALE CONOSCO</Text>
+            <View style={styles.containerComponents}>
             <View style={styles.containerQuemSomos}>
                 <Text style={styles.quemSomosText}>Olá somos o diretório acadêmico de Jundiaí...</Text>
             </View>
@@ -21,6 +22,7 @@ const ContactUsDA  = () => {
             <Text style={styles.textRede}>INSTAGRAM</Text>
             </View>
             </TouchableOpacity>
+            </View>
             </View>
 
         </View>
@@ -77,6 +79,11 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         columnGap: 20
 
+    },
+    containerComponents: {
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        left: 10
     },
     icon: {
         width: 35,
