@@ -34,7 +34,9 @@ const EditPerfilALuno = () => {
 
                 <InputLogin placeholder="Nome / Apelido:" placeholderTextColor={'#999393'}/>
                 <InputLogin placeholder="Curso:" placeholderTextColor={'#999393'}/>
+                <InputLogin style = {{height: 180}} placeholder="Descrição/Bio:" placeholderTextColor={'#999393'}/>
                 <Button buttonStyle={styles.button} title={'Editar'} titleStyle={styles.textButton}/>
+                <Button buttonStyle={styles.button} title={'Excluir Conta'} titleStyle={styles.textButton}/>
                 </View>
             </View>
             </ScrollView>
@@ -106,8 +108,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 20,
-        marginTop: 20
-
     },
     textButton:{
         fontSize: 24,
