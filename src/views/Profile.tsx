@@ -31,7 +31,7 @@ export const MenuPost = ({ closeMenu, setDeleteModalVisible }: { closeMenu: () =
       <TouchableOpacity
         onPress={() => {
           closeMenu();
-          navigation.navigate('FormEvento');
+          navigation.navigate('EditarEvento');
         }}
         style={{
           width: '100%',
