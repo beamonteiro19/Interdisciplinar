@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+  ScrollView,
+} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import ChatModal from '../views/ChatModal';
 import Sidebar from '../views/Sidebar';
-import ChatIcon from '../images/icons/comentario.png';
-import ExitIcon from '../images/icons/sair.png';
-import CalendarIcon from '../images/icons/calendario.png';
-import CanetaUsuarioIcon from '../images/icons/caneta-do-usuario.png';
-import MenuOptionsIcon from '../images/icons/menuOptions.png';
-import ProfileIcon from '../images/icons/perfilHome.png';
-import ProfileIconPost from '../images/icons/perfil.png';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Overlay } from '@rneui/themed';
 import { Button } from "@rneui/themed";
 
@@ -30,7 +31,7 @@ export const MenuPost = ({ closeMenu, setDeleteModalVisible }: { closeMenu: () =
       <TouchableOpacity
         onPress={() => {
           closeMenu();
-          navigation.navigate('EditarEvento');
+          navigation.navigate('FormEvento');
         }}
         style={{
           width: '100%',
@@ -121,12 +122,12 @@ const Profile = () => {
   const [isExitModalVisible, setExitModalVisible] = useState(false);
 
   const toggleChatModal = () => {
-    setMenuVisible(false); // Fecha o menu ao abrir o chat
+    setMenuVisible(false);
     setChatVisible(!chatVisible);
   };
 
   const toggleSidebar = () => {
-    setMenuVisible(false); // Fecha o menu ao abrir a sidebar
+    setMenuVisible(false); 
     setSidebarVisible(!sidebarVisible);
   };
 
@@ -136,43 +137,44 @@ const Profile = () => {
 
   return (
     <ScrollView style={styles.container}>
+      {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.navigate('FormEvento')} style={styles.profileContainer}>
+        <TouchableOpacity onPress={() => navigation.navigate('EditPerfilALuno')} style={styles.profileContainer}>
           <View style={styles.profileIconContainer}>
-            <Image source={ProfileIcon} style={styles.profileIcon} />
+            <Ionicons name="person-outline" size={30} color="#000000" />
           </View>
-          <Text style={styles.profileText}>USER_484165</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('Calendar')}>
-          <Image source={CalendarIcon} style={styles.calendarIcon} />
+          <Text style={styles.profileText}>D.A FATEC JD</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => setExitModalVisible(true)}>
-          <Image source={ExitIcon} style={styles.exitIcon} />
+          <Ionicons name="log-out-outline" size={30} color="#FFFFFF" />
         </TouchableOpacity>
       </View>
 
+      {/* Menu */}
       <View style={styles.postContainer}>
         <View style={styles.postHeader}>
-          <Text style={styles.postPrincipal}>Descrição Perfil</Text>
-          <TouchableOpacity>
-            <Image source={CanetaUsuarioIcon} style={styles.canetaUsuarioIcon} />
+          <Text style={styles.postPrincipal}>Texto de descrição do perfil</Text>
+          <TouchableOpacity onPress={() => navigation.navigate('EditPerfilALuno')}>
+            <Ionicons name="pencil-outline" size={18} color="#000000" />
           </TouchableOpacity>
         </View>
       </View>
 
-      <Text style={{marginLeft:15}}>Minhas publicações:</Text>
+      {/* Pré posts */}
+      <Text style={{marginLeft:10}}>Minhas publicações:</Text>
 
+      {/* Post */}
       <View style={styles.postContainer}>
         <View style={styles.postHeader}>
           <View style={styles.postProfileIconContainer}>
-            <Image source={ProfileIconPost} style={styles.profilePostIcon} />
+            <Ionicons name="person-outline" size={18} color="#000000" />
           </View>
           <Text style={styles.username}>User1246658</Text>
           <TouchableOpacity style={styles.menuContainer} onPress={toggleMenu}>
-            <Image source={MenuOptionsIcon} style={styles.menu} />
+          <Ionicons name="ellipsis-horizontal" size={18} color="#000000" />
           </TouchableOpacity>
 
-          {menuVisible && (
+                    {menuVisible && (
             <View style={styles.menuDropdown}>
               <MenuPost
                 closeMenu={toggleMenu}
@@ -180,21 +182,24 @@ const Profile = () => {
               />
             </View>
           )}
+
         </View>
-        <Image source={{ uri: 'https://via.placeholder.com/300x200' }} style={styles.postImage} />
-        <Text style={styles.postText}>Descrição da publicação...</Text>
+        <Image source={require('../images/feed1.png')} style={styles.postImage} />
+        <Text style={styles.postText}>Evento da InterFatecs 2024...</Text>
         <View style={styles.actionsContainer}>
-          <TouchableOpacity onPress={toggleChatModal}>
-            <Image source={ChatIcon} style={styles.actionIcon} />
+          <TouchableOpacity onPress={() => setChatVisible(true)}>
+            <Ionicons name="chatbubble-ellipses-outline" size={25} />
           </TouchableOpacity>
         </View>
       </View>
 
-      {/* Modais */}
-      <ChatModal visible={chatVisible} onClose={toggleChatModal} />
-      <Sidebar visible={sidebarVisible} onClose={toggleSidebar} />
+      <ChatModal visible={chatVisible} onClose={() => setChatVisible(false)} />
+      <Sidebar
+        visible={sidebarVisible}
+        onClose={() => setSidebarVisible(false)}
+      />
 
-      {/* Modal de Sair da conta */}
+{/* Modal de Sair da conta */}
 <Overlay
   isVisible={isExitModalVisible}
   onBackdropPress={() => setExitModalVisible(false)}
@@ -218,6 +223,7 @@ const Profile = () => {
       top: 10,
     }}
   >
+    {/* Aqui você pode adicionar o card de detalhes da publicação, se necessário */}
     <Text
       style={{
         color: 'black',
@@ -248,6 +254,7 @@ const Profile = () => {
       />
       <Button
         title={'Sair'}
+        onPress={() => navigation.navigate('Login')}
         buttonStyle={{
           height: 48,
           borderRadius: 30,
@@ -287,6 +294,7 @@ const Profile = () => {
       top: 10,
     }}
   >
+    {/* Aqui você pode adicionar o card de detalhes da publicação, se necessário */}
     <Text
       style={{
         color: 'black',
@@ -317,7 +325,7 @@ const Profile = () => {
       />
       <Button
         title={'Excluir'}
-        onPress={() => console.log('Excluído!')}
+        onPress={() => setDeleteModalVisible(false)}
         buttonStyle={{
           height: 48,
           borderRadius: 30,
@@ -339,39 +347,92 @@ const Profile = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#FAFAFA',
   },
+
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     backgroundColor: '#5D17EB',
     padding: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: '#E5E5E5',
   },
   profileContainer: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   profileIconContainer: {
-    backgroundColor: '#D9D9D9',
-    borderRadius: 20,
-    padding: 5,
-  },
-  profileIcon: {
-    width: 30,
-    height: 30,
+    backgroundColor: '#E5E5E5',
+    borderRadius: 50,
+    width: 40,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   profileText: {
-    color: '#FFF',
-    fontSize: 18,
-    fontWeight: 'bold',
+    color: '#FFFFFF',
+    fontSize: 16,
     marginLeft: 8,
+    fontFamily: 'Bryndan Write_fix',
   },
   menuContainer: {
-    alignSelf: 'center',
-    marginLeft: 'auto',
+    padding: 10,
+    alignItems: 'flex-start',
   },
-  menuDropdown: {
+  menuButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    tintColor: '#5D17EB',
+  },
+  postContainer: {
+    backgroundColor: '#FFFFFF',
+    marginVertical: 8,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderColor: '#E5E5E5',
+  },
+  postHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+    justifyContent: 'space-between',
+  },
+  postProfileIconContainer: {
+    backgroundColor: '#E5E5E5',
+    borderRadius: 50,
+    width: 30,
+    height: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 8,
+  },
+  username: {
+    fontSize: 14,
+    color: '#262626',
+    fontFamily: 'Bryndan Write_fix',
+    marginRight: 180,
+  },
+  postImage: {
+    width: '100%',
+    height: 300,
+    backgroundColor: '#F0F0F0',
+  },
+  postText: {
+    padding: 10,
+    fontSize: 14,
+    color: '#262626',
+    fontFamily: 'Bryndan Write_fix',
+  },
+  actionsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderColor: '#E5E5E5',
+  },
+    menuDropdown: {
     marginTop: 10,
     zIndex: 10,
     position: 'absolute',
@@ -385,82 +446,6 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     elevation: 5,
   },
-  postContainer: {
-    backgroundColor: '#FFF',
-    borderRadius: 8,
-    padding: 10,
-    margin: 10,
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
-    elevation: 2,
-  },
-  postHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: 5,
-  },
-  postProfileIconContainer: {
-    backgroundColor: '#D9D9D9',
-    borderRadius: 20,
-    padding: 5,
-    marginRight: 8,
-    borderWidth: 1,
-    borderColor: '#5D17EB',
-  },
-  profilePostIcon: {
-    width: 30,
-    height: 30,
-  },
-  username: {
-    fontWeight: 'bold',
-    color: '#5D17EB',
-  },
-  postImage: {
-    width: '100%',
-    height: 200,
-    borderRadius: 8,
-    marginBottom: 10,
-  },
-  postText: {
-    color: '#333',
-    marginBottom: 10,
-  },
-  actionsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    paddingHorizontal: 10,
-  },
-  actionIcon: {
-    width: 30,
-    height: 30,
-    marginRight: 15,
-  },
-  exitIcon: {
-    width: 30,
-    height: 30,
-    tintColor: '#FFF',
-  },
-  calendarIcon: {
-    width: 30,
-    height: 30,
-    tintColor: '#FFF',
-  },
-  canetaUsuarioIcon: {
-    width: 20,
-    height: 20,
-  },
-  buttonPresenca:{
-    backgroundColor: 'white',
-    borderRadius: 20,
-    borderColor: '#5D17EB',
-    borderWidth: 1,
-    padding: 3,
-    width: 201,
-    paddingHorizontal: 5,
-    height: 45
-   },
 });
 
 export default Profile;
