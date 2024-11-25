@@ -28,7 +28,7 @@ const Sports = () => {
   );
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', padding: 20 }}>
+    <View style={{ flex: 1, alignItems: 'center', padding: 20, backgroundColor: 'white' }}>
       <Text style={{ fontSize: 18, fontFamily: 'Bryndan Write_fix', }}>CONHEÇA NOSSAS MODALIDADES</Text>
       <View style={styles.gridContainer}>
         {sportsData.map((sport) => (
