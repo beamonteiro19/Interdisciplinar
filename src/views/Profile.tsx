@@ -153,7 +153,7 @@ const Profile = () => {
       {/* Menu */}
       <View style={styles.postContainer}>
         <View style={styles.postHeader}>
-          <Text style={styles.postPrincipal}>Texto de descrição do perfil</Text>
+          <Text style={styles.postText}>Texto de descrição do perfil</Text>
           <TouchableOpacity onPress={() => navigation.navigate('EditPerfilALuno')}>
             <Ionicons name="pencil-outline" size={18} color="#000000" />
           </TouchableOpacity>
@@ -161,7 +161,7 @@ const Profile = () => {
       </View>
 
       {/* Pré posts */}
-      <Text style={{marginLeft:10}}>Minhas publicações:</Text>
+      <Text style={{marginLeft:10, fontFamily: 'Bryndan Write_fix'}}>Minhas publicações:</Text>
 
       {/* Post */}
       <View style={styles.postContainer}>
