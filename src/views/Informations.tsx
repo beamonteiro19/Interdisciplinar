@@ -24,7 +24,7 @@ const Informations = () => {
   const navigation = useNavigation();
   
   return (
-    <ScrollView>
+    <ScrollView style={{backgroundColor: 'white'}}>
     <View style={{ flex: 1, alignItems: 'center', padding: 20, backgroundColor: 'white', }}>
       <View style={styles.gridContainer}>
        
