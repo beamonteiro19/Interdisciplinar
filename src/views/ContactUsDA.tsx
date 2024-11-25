@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     containerComponents: {
         justifyContent: 'center',
         alignItems: 'flex-start',
-        left: 10
+        
     },
     icon: {
         width: 35,
